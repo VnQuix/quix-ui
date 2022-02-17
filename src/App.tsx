@@ -1,9 +1,13 @@
 import React from 'react';
 
+import Dashboard from 'views/Dashboard';
+
+import './bootstrap.min.css';
+
 const App: React.FC = () => {
   return (
     <Providers>
-
+      <Dashboard />
     </Providers>
   );
 }

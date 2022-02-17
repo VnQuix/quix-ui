@@ -2,27 +2,43 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-import { Container, Nav } from 'react-bootstrap'
+import { Container, Navbar } from 'react-bootstrap'
+import quixLogo from 'assets/quix-logo.png'
 
 const SideBar: React.FC = () => {
     return (
         <Container>
-            <StyledNav>
-                <h2 style={{ marginRight: "2rem" }}>test</h2>
-            </StyledNav>
+            <StyledSideBar>
+                <StyledSideBarContent>
+                    <Navbar.Brand>
+                        <img
+                            alt=""
+                            src={quixLogo}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                        />{' '}&nbsp;
+                        <strong> Quix</strong>
+                    </Navbar.Brand>
+                </StyledSideBarContent>
+            </StyledSideBar>
         </Container>
     )
 }
 
-const StyledNav = styled.div`
+const StyledSideBar = styled.div`
     position: fixed;
     top: 0;
     bottom: 0;
-    left: 19rem;
+    left: 10rem;
     min-height: 100vh !important;
     z-index: 100;
-    padding: 48px 0 0;
+    padding: 24px 0 0;
     box-shadow: inset -1px 0 0 rgba(255, 255, 255, .3);    
+`
+
+const StyledSideBarContent = styled.div`
+    margin-right: 5rem;
 `
 
 export default SideBar

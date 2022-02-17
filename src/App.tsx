@@ -1,6 +1,9 @@
+
 import React from 'react';
 
 import Dashboard from 'views/Dashboard';
+
+import { WalletContextProvider } from 'contexts/Wallet';
 
 import './bootstrap.min.css';
 
@@ -15,7 +18,10 @@ const App: React.FC = () => {
 const Providers: React.FC = ({ children }) => {
   return (
     <>
-      {children}
+      <WalletContextProvider>
+        {children}
+      </WalletContextProvider>
+
     </>
   )
 }

@@ -17,7 +17,7 @@ const Dashboard: React.FC = () => {
                 </Col>
                 <Col xs={8}>
                     <StyledPageContentWrapper>
-                        test
+
                     </StyledPageContentWrapper>
                 </Col>
             </Row>

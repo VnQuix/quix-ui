@@ -7,6 +7,7 @@ import { shortenAddress, useLookupAddress } from '@usedapp/core'
 import useWallet from 'hooks/useWallet'
 import { Button } from 'react-bootstrap'
 import WalletModal from 'components/WalletModal'
+import { AiFillWarning } from 'react-icons/ai'
 
 const WalletButton: React.FC = () => {
     const {
@@ -35,10 +36,17 @@ const WalletButton: React.FC = () => {
     const variant = !!account ? 'dark' : 'success'
 
     return (
-        <>
+        <div className='pt-5'>
+            {!account && (
+                <StyledText>
+                    <AiFillWarning fontSize='18px' color="red" /> &nbsp; <h6><strong>No Wallet Connected</strong></h6>
+                </StyledText>
+            )}
+
             <Button
                 onClick={onClick}
                 variant={variant}
+                style={{ minHeight: '3rem' }}
             >
                 <StyledText>
                     {account && (
@@ -51,14 +59,15 @@ const WalletButton: React.FC = () => {
                             />
                         </StyledDavatar>
                     )}
-                    {openWalletText}
+                    <strong>{openWalletText}</strong>
                 </StyledText>
             </Button>
             <WalletModal
                 isOpen={!account && isShowingWalletModal}
                 onDismiss={onCloseWalletModal}
             />
-        </>
+
+        </div>
     )
 }
 
@@ -77,7 +86,6 @@ function getOpenWalletText(
 
 const StyledDavatar = styled.div`
   margin-right: 6px;
-
 `
 const StyledText = styled.div`
   position: static;

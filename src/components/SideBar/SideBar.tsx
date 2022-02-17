@@ -40,9 +40,10 @@ const StyledSideBar = styled.div`
 `
 
 const StyledSideBarContent = styled.div`
-    margin-right: 5rem;
+    margin-right: 0rem;
     display: flex;
     flex-direction: column;
+    min-width:12rem;
 `
 
 export default SideBar

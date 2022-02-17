@@ -10,12 +10,12 @@ const Dashboard: React.FC = () => {
     return (
         <Container fluid>
             <Row>
-                <Col xs={4}>
+                <Col xs={3}>
                     <StyledSideBarWrapper>
                         <SideBar />
                     </StyledSideBarWrapper>
                 </Col>
-                <Col xs={8}>
+                <Col xs={9}>
                     <StyledPageContentWrapper>
 
                     </StyledPageContentWrapper>
@@ -33,10 +33,10 @@ const StyledSideBarWrapper = styled.div`
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
     transition: margin .25s ease-out;
+    overflow: hidden;
 `
 
 const StyledPageContentWrapper = styled.div`
-    min-width: 0;
     width: 100%;
 `
 

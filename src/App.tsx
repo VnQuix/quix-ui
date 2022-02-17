@@ -21,7 +21,6 @@ const Providers: React.FC = ({ children }) => {
       <WalletContextProvider>
         {children}
       </WalletContextProvider>
-
     </>
   )
 }

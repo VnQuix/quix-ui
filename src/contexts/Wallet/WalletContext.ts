@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-type WalletType = "injected" | "walletconnect" | "walletlink" | "ledgerwallet";
+type WalletType = "injected" | "walletconnect" | "walletlink";
 
 interface WalletContextValues {
   account: string | null | undefined;

@@ -41,7 +41,9 @@
     ]
   },
   "devDependencies": {
+    "@davatar/react": "^1.8.1",
     "@types/styled-components": "^5.1.22",
+    "@usedapp/core": "^0.11.0",
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "@web3-react/network-connector": "^6.2.9",

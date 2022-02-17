@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { Container, Navbar } from 'react-bootstrap'
 import quixLogo from 'assets/quix-logo.png'
+import WalletButton from 'components/WalletButton'
 
 const SideBar: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ const SideBar: React.FC = () => {
                         />{' '}&nbsp;
                         <strong> Quix</strong>
                     </Navbar.Brand>
+                    <WalletButton />
                 </StyledSideBarContent>
             </StyledSideBar>
         </Container>
@@ -39,6 +41,8 @@ const StyledSideBar = styled.div`
 
 const StyledSideBarContent = styled.div`
     margin-right: 5rem;
+    display: flex;
+    flex-direction: column;
 `
 
 export default SideBar

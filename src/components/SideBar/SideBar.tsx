@@ -6,6 +6,12 @@ import { Container, Navbar } from 'react-bootstrap'
 import quixLogo from 'assets/quix-logo.png'
 import WalletButton from 'components/WalletButton'
 
+import { AiFillHome } from "react-icons/ai"
+import { FaExchangeAlt, FaPiggyBank } from "react-icons/fa"
+import { RiMoneyDollarCircleFill } from "react-icons/ri"
+import { IoIosSettings } from 'react-icons/io'
+import { HiDotsHorizontal } from 'react-icons/hi'
+
 const SideBar: React.FC = () => {
     return (
         <Container>
@@ -22,6 +28,44 @@ const SideBar: React.FC = () => {
                         <strong> Quix</strong>
                     </Navbar.Brand>
                     <WalletButton />
+                    <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
+                        <StyledText className='pt-5'>
+                            <AiFillHome fontSize='23px' style={{ marginRight: '1rem' }} />
+                            <StyledHeading>Home</StyledHeading>
+                        </StyledText>
+                    </a>
+                    <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
+                        <StyledText className='pt-3'>
+                            <FaExchangeAlt fontSize='23px' style={{ marginRight: '1rem' }} />
+                            <StyledHeading>Exchange</StyledHeading>
+                        </StyledText>
+                    </a>
+                    <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
+                        <StyledText className='pt-3'>
+                            <RiMoneyDollarCircleFill fontSize='23px' style={{ marginRight: '1rem' }} />
+                            <StyledHeading>Pool</StyledHeading>
+                        </StyledText>
+                    </a>
+                    <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
+                        <StyledText className='pt-3'>
+                            <FaPiggyBank fontSize='23px' style={{ marginRight: '1rem' }} />
+                            <StyledHeading>Save</StyledHeading>
+                        </StyledText>
+                    </a>
+                    <StyledFooter>
+                        <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
+                            <StyledText className='pt-3'>
+                                <IoIosSettings fontSize='23px' style={{ marginRight: '1rem' }} />
+                                <StyledHeading>Settings</StyledHeading>
+                            </StyledText>
+                        </a>
+                        <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
+                            <StyledText className='pt-3'>
+                                <HiDotsHorizontal fontSize='23px' style={{ marginRight: '1rem' }} />
+                                <StyledHeading>Learn More</StyledHeading>
+                            </StyledText>
+                        </a>
+                    </StyledFooter>
                 </StyledSideBarContent>
             </StyledSideBar>
         </Container>
@@ -44,6 +88,22 @@ const StyledSideBarContent = styled.div`
     display: flex;
     flex-direction: column;
     min-width:12rem;
+`
+
+const StyledHeading = styled.h6`
+    font-weight: bold;
+    margin-top:0.2rem;
+`
+
+const StyledText = styled.div`
+  position: static;
+  display: flex;
+  margin-left: 0.2rem;
+`
+
+const StyledFooter = styled.div`
+    position: absolute;
+    bottom: 3rem;
 `
 
 export default SideBar

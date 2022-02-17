@@ -36,7 +36,7 @@ const WalletButton: React.FC = () => {
     const variant = !!account ? 'dark' : 'success'
 
     return (
-        <div className='pt-5'>
+        <div className='pt-5' style={{ color: 'whitesmoke' }}>
             {!account && (
                 <StyledText>
                     <AiFillWarning fontSize='18px' color="red" /> &nbsp; <h6><strong>No Wallet Connected</strong></h6>

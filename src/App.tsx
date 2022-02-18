@@ -14,6 +14,7 @@ import useWallet from 'hooks/useWallet';
 
 import 'react-toastify/dist/ReactToastify.css'
 import './bootstrap.min.css';
+import { TokenDataContextProvider } from 'contexts/TokenData';
 
 
 const App: React.FC = () => {
@@ -53,7 +54,9 @@ const Providers: React.FC = ({ children }) => {
   return (
     <>
       <WalletContextProvider>
-        {children}
+        <TokenDataContextProvider>
+          {children}
+        </TokenDataContextProvider>
       </WalletContextProvider>
       <ToastContainer transition={Slide} position='bottom-left' closeOnClick theme='colored' />
     </>

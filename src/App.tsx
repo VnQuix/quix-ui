@@ -9,12 +9,13 @@ import SideBar from 'components/SideBar'
 import InfoBar from 'components/InfoBar';
 import { Col, Container, Row } from "react-bootstrap"
 import { WalletContextProvider } from 'contexts/Wallet';
+import { TokenDataContextProvider } from 'contexts/TokenData';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import useWallet from 'hooks/useWallet';
 
 import 'react-toastify/dist/ReactToastify.css'
 import './bootstrap.min.css';
-import { TokenDataContextProvider } from 'contexts/TokenData';
+
 
 
 const App: React.FC = () => {

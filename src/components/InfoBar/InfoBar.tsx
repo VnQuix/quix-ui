@@ -3,21 +3,10 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import { Container, Card, Row, Col } from "react-bootstrap";
-
-import btcLogo from "assets/Token/btc-logo.svg";
-import ethLogo from "assets/Token/eth-logo.png";
-import adaLogo from "assets/Token/ada-logo.svg";
-import solLogo from "assets/Token/sol-logo.png";
-import avaxLogo from "assets/Token/avax-logo.png";
-
 import useTokenData from "hooks/useTokenData";
 
 const InfoBar: React.FC = () => {
     const { infoBarTokens } = useTokenData()
-
-    useEffect(() => {
-        console.log(infoBarTokens)
-    }, [infoBarTokens])
 
     return (
         <Container>
@@ -28,76 +17,22 @@ const InfoBar: React.FC = () => {
                             Token Watchlist
                         </Card.Header>
                         <Card.Body>
-                            <Row>
-                                <Col xs={1}>
-                                    {" "}
-                                    <img
-                                        alt=""
-                                        src={btcLogo}
-                                        width="27"
-                                        height="27"
-                                        className="pt-0"
-                                    />{" "}
-                                </Col>
-                                <Col xs={3}><StyledToken>BTC</StyledToken></Col>
-                                <Col xs={7} style={{ marginLeft: '1.4rem', textAlign: 'right' }}>$00.000 (+0.00%)</Col>
-                            </Row>
-                            <Row>
-                                <Col xs={1}>
-                                    {" "}
-                                    <img
-                                        alt=""
-                                        src={ethLogo}
-                                        width="27"
-                                        height="27"
-                                        className="pt-0"
-                                    />{" "}
-                                </Col>
-                                <Col xs={3}><StyledToken>ETH</StyledToken></Col>
-                                <Col xs={7} style={{ marginLeft: '1.4rem', textAlign: 'right' }}>$00.000 (+0.00%)</Col>
-                            </Row>
-                            <Row>
-                                <Col xs={1}>
-                                    {" "}
-                                    <img
-                                        alt=""
-                                        src={adaLogo}
-                                        width="27"
-                                        height="27"
-                                        className="pt-0"
-                                    />{" "}
-                                </Col>
-                                <Col xs={3}><StyledToken>ADA</StyledToken></Col>
-                                <Col xs={7} style={{ marginLeft: '1.4rem', textAlign: 'right' }}>$00.000 (+0.00%)</Col>
-                            </Row>
-                            <Row>
-                                <Col xs={1}>
-                                    {" "}
-                                    <img
-                                        alt=""
-                                        src={solLogo}
-                                        width="27"
-                                        height="27"
-                                        className="pt-0"
-                                    />{" "}
-                                </Col>
-                                <Col xs={3}><StyledToken>SOL</StyledToken></Col>
-                                <Col xs={7} style={{ marginLeft: '1.4rem', textAlign: 'right' }}>$00.000 (+0.00%)</Col>
-                            </Row>
-                            <Row>
-                                <Col xs={1}>
-                                    {" "}
-                                    <img
-                                        alt=""
-                                        src={avaxLogo}
-                                        width="27"
-                                        height="27"
-                                        className="pt-0"
-                                    />{" "}
-                                </Col>
-                                <Col xs={3}><StyledToken>AVAX</StyledToken></Col>
-                                <Col xs={7} style={{ marginLeft: '1.4rem', textAlign: 'right' }}>$00.000 (+0.00%)</Col>
-                            </Row>
+                            {infoBarTokens?.map((data) => (
+                                <Row>
+                                    <Col xs={1}>
+                                        {" "}
+                                        <img
+                                            alt=""
+                                            src={data.image}
+                                            width="27"
+                                            height="27"
+                                            className="pt-0"
+                                        />{" "}
+                                    </Col>
+                                    <Col xs={3}><StyledToken>{data.symbol}</StyledToken></Col>
+                                    <Col xs={7} style={{ marginLeft: '1.4rem', textAlign: 'right' }}>{currencyFormat(Number(data.priceUsd))}</Col>
+                                </Row>
+                            ))}
                         </Card.Body>
                     </Card>
                 </StyledInfoBarContent>
@@ -127,5 +62,9 @@ const StyledToken = styled.p`
   font-size: 1.05rem;
   margin-left: 0.8rem;
 `;
+
+function currencyFormat(num: number) {
+    return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
 
 export default InfoBar;

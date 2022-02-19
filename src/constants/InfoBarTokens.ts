@@ -49,7 +49,7 @@ export const AVAX: TokenData = {
   address: "",
   id: "5",
   image: avaxLogo,
-  name: "Avalanche",
+  name: "avalanche-2",
   symbol: "AVAX",
   priceUsd: "0",
   dailyPercentChange: "0",

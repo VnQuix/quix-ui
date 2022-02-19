@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styled from "styled-components";
 
@@ -10,7 +10,15 @@ import adaLogo from "assets/Token/ada-logo.svg";
 import solLogo from "assets/Token/sol-logo.png";
 import avaxLogo from "assets/Token/avax-logo.png";
 
+import useTokenData from "hooks/useTokenData";
+
 const InfoBar: React.FC = () => {
+    const { infoBarTokens } = useTokenData()
+
+    useEffect(() => {
+        console.log(infoBarTokens)
+    }, [infoBarTokens])
+
     return (
         <Container>
             <StyledInfoBar className="pt-4">

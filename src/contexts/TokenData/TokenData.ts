@@ -8,5 +8,5 @@ export interface TokenData {
   symbol: string;
   priceUsd: string;
   dailyPercentChange: string;
-  balance?: string;
+  balance: string;
 }

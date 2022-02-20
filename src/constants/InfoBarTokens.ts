@@ -15,6 +15,7 @@ export const BTC: TokenData = {
   symbol: "BTC",
   priceUsd: "0",
   dailyPercentChange: "0",
+  balance: "",
 };
 
 export const ETH: TokenData = {
@@ -27,6 +28,7 @@ export const ETH: TokenData = {
   symbol: "ETH",
   priceUsd: "0",
   dailyPercentChange: "0",
+  balance: "",
 };
 
 export const ADA: TokenData = {
@@ -39,6 +41,7 @@ export const ADA: TokenData = {
   symbol: "ADA",
   priceUsd: "0",
   dailyPercentChange: "0",
+  balance: "",
 };
 
 export const SOL: TokenData = {
@@ -51,6 +54,7 @@ export const SOL: TokenData = {
   symbol: "SOL",
   priceUsd: "0",
   dailyPercentChange: "0",
+  balance: "",
 };
 
 export const AVAX: TokenData = {
@@ -63,6 +67,7 @@ export const AVAX: TokenData = {
   symbol: "AVAX",
   priceUsd: "0",
   dailyPercentChange: "0",
+  balance: "",
 };
 
 const InfoBarTokenList = [BTC, ETH, ADA, SOL, AVAX];

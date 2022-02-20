@@ -14,6 +14,7 @@ export const USDT: TokenData = {
   symbol: "USDT",
   priceUsd: "0",
   dailyPercentChange: "0",
+  balance: "0",
 };
 
 export const ETH: TokenData = {
@@ -26,6 +27,7 @@ export const ETH: TokenData = {
   symbol: "WETH",
   priceUsd: "0",
   dailyPercentChange: "0",
+  balance: "0",
 };
 
 export const MATIC: TokenData = {
@@ -38,6 +40,7 @@ export const MATIC: TokenData = {
   symbol: "MATIC",
   priceUsd: "0",
   dailyPercentChange: "0",
+  balance: "0",
 };
 
 const WalletTokenList = [USDT, ETH, MATIC];

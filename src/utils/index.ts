@@ -8,10 +8,6 @@ const getBigNumber = (number: BigNumber | undefined) => {
   return number ? number : new BigNumber(0);
 };
 
-export const fromWei = (number: BigNumber | undefined, power: number = 18) => {
-  return getBigNumber(number).dividedBy(new BigNumber(10).pow(power));
-};
-
 export const displayFromWei = (
   number: BigNumber | undefined,
   decimals: number = 5
@@ -42,4 +38,8 @@ export const getBalance = async (
   } catch (e) {
     return "0";
   }
+};
+
+export const fromWei = (number: BigNumber | undefined, power: number = 18) => {
+  return getBigNumber(number).dividedBy(new BigNumber(10).pow(power));
 };

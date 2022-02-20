@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
 import BalancesContext from './BalancesContext'
-import BigNumber from "utils/bignumber"
 import useWallet from 'hooks/useWallet'
 import { provider } from 'web3-core'
 import WalletTokenList from 'constants/Erc20Token'

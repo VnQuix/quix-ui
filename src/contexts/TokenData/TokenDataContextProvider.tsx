@@ -52,6 +52,7 @@ function convertToTokenData(
             symbol: token.symbol,
             priceUsd: tokenPrices,
             dailyPercentChange: tokenPriceChangesPercentage,
+            balance: token.balance,
         }
     }
 

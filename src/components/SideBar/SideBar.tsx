@@ -76,7 +76,7 @@ const StyledSideBar = styled.div`
     position: fixed;
     top: 0;
     bottom: 0;
-    left: 10rem;
+    left: 9.7rem;
     min-height: 100vh !important;
     z-index: 100;
     padding: 24px 0 0;
@@ -87,7 +87,7 @@ const StyledSideBarContent = styled.div`
     margin-right: 0rem;
     display: flex;
     flex-direction: column;
-    min-width:12rem;
+    min-width: 12rem;
 `
 
 const StyledHeading = styled.h6`

@@ -1,5 +1,5 @@
-import BigNumber from "utils/bignumber";
+import { TokenData } from "contexts/TokenData/TokenData";
 
 export interface ContextValues {
-  ethBalance?: BigNumber;
+  tokenBalances?: TokenData[];
 }

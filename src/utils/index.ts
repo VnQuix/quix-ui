@@ -1,21 +1,10 @@
 import { provider } from "web3-core";
 import Web3 from "web3";
 import BigNumber from "./bignumber";
+import { AbiItem } from "web3-utils";
+import ERC20ABI from "sdk/abi/ERC20.json";
 
-export const getEthBalance = async (
-  provider: provider,
-  userAddress: string
-): Promise<string> => {
-  const web3 = new Web3(provider);
-  try {
-    const balance: string = await web3.eth.getBalance(userAddress);
-    return balance;
-  } catch (e) {
-    return "0";
-  }
-};
-
-export const getBigNumber = (number: BigNumber | undefined) => {
+const getBigNumber = (number: BigNumber | undefined) => {
   return number ? number : new BigNumber(0);
 };
 
@@ -28,4 +17,29 @@ export const displayFromWei = (
   decimals: number = 5
 ) => {
   return fromWei(number).toFormat(decimals);
+};
+
+export const getERC20Contract = (provider: provider, address: string) => {
+  const web3 = new Web3(provider);
+  const contract = new web3.eth.Contract(
+    ERC20ABI.abi as unknown as AbiItem,
+    address
+  );
+  return contract;
+};
+
+export const getBalance = async (
+  provider: provider,
+  tokenAddress: string,
+  userAddress: string
+): Promise<string> => {
+  const tokenContract = getERC20Contract(provider, tokenAddress);
+  try {
+    const balance: string = await tokenContract.methods
+      .balanceOf(userAddress)
+      .call();
+    return balance;
+  } catch (e) {
+    return "0";
+  }
 };

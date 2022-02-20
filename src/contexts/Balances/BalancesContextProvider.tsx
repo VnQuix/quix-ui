@@ -4,28 +4,28 @@ import BalancesContext from './BalancesContext'
 import BigNumber from "utils/bignumber"
 import useWallet from 'hooks/useWallet'
 import { provider } from 'web3-core'
-import { getEthBalance } from 'utils'
+import WalletTokenList from 'constants/Erc20Token'
+import { TokenData } from 'contexts/TokenData/TokenData'
+import { getBalance } from 'utils'
 
 const BalancesContextProvider: React.FC = ({ children }) => {
-    const [ethBalance, setEthBalance] = useState<BigNumber>(new BigNumber(0))
+    const [walletTokenBalance, setWalletTokenBalance] = useState<TokenData[]>([])
 
     const { account, ethereum, status, chainId } = useWallet()
 
-    const fetchBalances = useCallback(
-        async (userAddress: string, provider: provider) => {
-            if (chainId) {
-                const balances = await Promise.all([
-                    getEthBalance(provider, userAddress)
-                ])
-                setEthBalance(new BigNumber(balances[0]))
-            }
-        },
-        [chainId],
-    )
+    const fetchBalances = useCallback((userAddress: string, provider: provider) => {
+        const WalletTokens = WalletTokenList.map(async (e) => {
+            const TokenBalances = await getBalance(provider, e.polygonAddress, userAddress)
+            return convertToTokenData(e, JSON.stringify(TokenBalances))
+        })
+        Promise.all(WalletTokens)
+            .then(setWalletTokenBalance)
+    }, [setWalletTokenBalance])
+
 
     useEffect(() => {
         if (status !== 'connected') {
-            setEthBalance(new BigNumber(0))
+            setWalletTokenBalance([])
         }
     }, [status])
 
@@ -36,17 +36,43 @@ const BalancesContextProvider: React.FC = ({ children }) => {
 
             return () => clearInterval(refreshInterval)
         }
-    }, [account, ethereum, fetchBalances])
+    }, [account, ethereum, fetchBalances, chainId])
+
+
 
     return (
         <BalancesContext.Provider
             value={{
-                ethBalance: ethBalance
+                tokenBalances: walletTokenBalance
             }}
         >
             {children}
         </BalancesContext.Provider>
     )
+}
+
+
+function convertToTokenData(
+    token: TokenData,
+    tokenBalances: string
+) {
+    if (!tokenBalances) {
+        return token
+    } else {
+        return {
+            address: token.address,
+            polygonAddress: token.polygonAddress,
+            id: token.id,
+            image: token.image,
+            name: token.name,
+            coinGeckoID: token.coinGeckoID,
+            symbol: token.symbol,
+            priceUsd: token.priceUsd,
+            dailyPercentChange: token.dailyPercentChange,
+            balance: tokenBalances
+        }
+    }
+
 }
 
 export default BalancesContextProvider

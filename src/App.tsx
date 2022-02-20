@@ -10,6 +10,7 @@ import InfoBar from 'components/InfoBar';
 import { Col, Container, Row } from "react-bootstrap"
 import { WalletContextProvider } from 'contexts/Wallet';
 import { TokenDataContextProvider } from 'contexts/TokenData';
+import { BalancesContextProvider } from 'contexts/Balances';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import useWallet from 'hooks/useWallet';
 
@@ -56,7 +57,9 @@ const Providers: React.FC = ({ children }) => {
     <>
       <WalletContextProvider>
         <TokenDataContextProvider>
-          {children}
+          <BalancesContextProvider>
+            {children}
+          </BalancesContextProvider>
         </TokenDataContextProvider>
       </WalletContextProvider>
       <ToastContainer transition={Slide} position='bottom-left' closeOnClick theme='colored' />

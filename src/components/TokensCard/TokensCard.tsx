@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Card, Row, Col } from 'react-bootstrap'
 import ethLogo from "assets/Token/eth-logo.png"
+import useBalances from "hooks/useBalances"
+import { displayFromWei } from 'utils'
 
 const TokensCard: React.FC = () => {
+    const { ethBalance } = useBalances()
+
     return (
         <Card>
             <Card.Header><h5><strong>Wallet</strong></h5></Card.Header>
@@ -23,7 +27,7 @@ const TokensCard: React.FC = () => {
                             <h5><strong style={{ marginLeft: "0.5rem" }}>Ethereum</strong></h5>
                         </Col>
                         <Col xs={5} style={{ textAlign: 'right' }}>
-                            0.00
+                            {displayFromWei(ethBalance)}
                         </Col>
                     </Row>
                 </Card>

@@ -19,7 +19,7 @@ const InfoBar: React.FC = () => {
                         </Card.Header>
                         <Card.Body>
                             {infoBarTokens?.map((data) => (
-                                <Row>
+                                <Row key={data.id}>
                                     <Col xs={1}>
                                         {" "}
                                         <img

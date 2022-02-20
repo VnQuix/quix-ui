@@ -6,6 +6,7 @@ import { provider } from 'web3-core'
 import WalletTokenList from 'constants/Erc20Token'
 import { TokenData } from 'contexts/TokenData/TokenData'
 import { getBalance } from 'utils'
+import { getPrice } from 'contexts/TokenData/TokenDataContextProvider'
 
 const BalancesContextProvider: React.FC = ({ children }) => {
     const [walletTokenBalance, setWalletTokenBalance] = useState<TokenData[]>([])
@@ -15,10 +16,15 @@ const BalancesContextProvider: React.FC = ({ children }) => {
     const fetchBalances = useCallback((userAddress: string, provider: provider) => {
         const WalletTokens = WalletTokenList.map(async (e) => {
             const TokenBalances = await getBalance(provider, e.polygonAddress, userAddress)
-            return convertToTokenData(e, JSON.stringify(TokenBalances))
+            const TokenPrices = await getPrice(e)
+            const PriceConverted = TokenPrices[e.coinGeckoID]["usd"]
+
+            return convertToTokenData(e, JSON.stringify(TokenBalances), JSON.stringify(PriceConverted))
         })
         Promise.all(WalletTokens)
             .then(setWalletTokenBalance)
+
+
     }, [setWalletTokenBalance])
 
 
@@ -53,7 +59,8 @@ const BalancesContextProvider: React.FC = ({ children }) => {
 
 function convertToTokenData(
     token: TokenData,
-    tokenBalances: string
+    tokenBalances: string,
+    tokenPrices: string,
 ) {
     if (!tokenBalances) {
         return token
@@ -66,7 +73,7 @@ function convertToTokenData(
             name: token.name,
             coinGeckoID: token.coinGeckoID,
             symbol: token.symbol,
-            priceUsd: token.priceUsd,
+            priceUsd: tokenPrices,
             dailyPercentChange: token.dailyPercentChange,
             balance: tokenBalances
         }

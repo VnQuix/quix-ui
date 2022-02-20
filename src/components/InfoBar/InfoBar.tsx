@@ -65,7 +65,7 @@ const StyledToken = styled.p`
   margin-left: 0.8rem;
 `;
 
-function currencyFormat(num: number) {
+export function currencyFormat(num: number) {
     return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 

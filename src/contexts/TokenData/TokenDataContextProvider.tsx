@@ -6,7 +6,6 @@ import InfoBarTokenList from 'constants/InfoBarTokens'
 
 
 const TokenDataContextProvider: React.FC = ({ children }) => {
-
     const [infoBarTokens, setInfoBarTokens] = useState<TokenData[]>([])
 
     useEffect(() => {
@@ -58,7 +57,7 @@ function convertToTokenData(
 
 }
 
-function getPrice(
+export function getPrice(
     token: TokenData
 ): Promise<any> {
     return fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${token.coinGeckoID}&vs_currencies=USD&include_24hr_change=true`)

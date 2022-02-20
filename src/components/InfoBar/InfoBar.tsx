@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import styled from "styled-components";
 
@@ -8,11 +8,12 @@ import useTokenData from "hooks/useTokenData";
 const InfoBar: React.FC = () => {
     const { infoBarTokens } = useTokenData()
 
+
     return (
         <Container>
             <StyledInfoBar className="pt-4">
                 <StyledInfoBarContent>
-                    <Card style={{ minWidth: "21rem", color: "whitesmoke" }}>
+                    <Card style={{ minWidth: "22rem", color: "whitesmoke" }}>
                         <Card.Header style={{ fontWeight: "bold" }}>
                             Token Watchlist
                         </Card.Header>
@@ -30,7 +31,8 @@ const InfoBar: React.FC = () => {
                                         />{" "}
                                     </Col>
                                     <Col xs={3}><StyledToken>{data.symbol}</StyledToken></Col>
-                                    <Col xs={7} style={{ marginLeft: '1.4rem', textAlign: 'right' }}>{currencyFormat(Number(data.priceUsd))}</Col>
+                                    <Col xs={4} style={{ marginLeft: '1.4rem', textAlign: 'right' }}>{currencyFormat(Number(data.priceUsd))}</Col>
+                                    <Col xs={3} style={{ color: parseFloat(data.dailyPercentChange) >= 0 ? 'green' : 'red', fontWeight: 'bold' }}>({parseFloat(data.dailyPercentChange).toFixed(2)}%)</Col>
                                 </Row>
                             ))}
                         </Card.Body>

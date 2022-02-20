@@ -12,8 +12,11 @@ const TokenDataContextProvider: React.FC = ({ children }) => {
     useEffect(() => {
         const InfoTokens = InfoBarTokenList.map(async (e) => {
             const TokenPrice = await getPrice(e)
+
             const PriceConverted = TokenPrice[e.name.toLowerCase()]["usd"]
-            return convertToTokenData(e, JSON.stringify(PriceConverted))
+            const PercentageConverted = TokenPrice[e.name.toLowerCase()]["usd_24h_change"]
+
+            return convertToTokenData(e, JSON.stringify(PriceConverted), JSON.stringify(PercentageConverted))
         })
         Promise.all(InfoTokens)
             .then(setInfoBarTokens)
@@ -33,7 +36,8 @@ const TokenDataContextProvider: React.FC = ({ children }) => {
 
 function convertToTokenData(
     token: TokenData,
-    tokenPrices?: string
+    tokenPrices: string,
+    tokenPriceChangesPercentage: string
 ) {
     if (!tokenPrices) {
         return token
@@ -45,7 +49,7 @@ function convertToTokenData(
             name: token.name,
             symbol: token.symbol,
             priceUsd: tokenPrices,
-            dailyPercentChange: token.dailyPercentChange,
+            dailyPercentChange: tokenPriceChangesPercentage,
         }
     }
 
@@ -54,7 +58,7 @@ function convertToTokenData(
 function getPrice(
     token: TokenData
 ): Promise<any> {
-    return fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${token.name}&vs_currencies=USD`)
+    return fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${token.name}&vs_currencies=USD&include_24hr_change=true`)
         .then((response) => response.json())
         .catch((e) => console.log(e))
 }

@@ -57,13 +57,15 @@ const Providers: React.FC = ({ children }) => {
   return (
     <>
       <WalletContextProvider>
-        <TokenDataContextProvider>
-          <BalancesContextProvider>
-            <ChainDataContextProvider>
+        <ChainDataContextProvider>
+          <TokenDataContextProvider>
+            <BalancesContextProvider>
+
               {children}
-            </ChainDataContextProvider>
-          </BalancesContextProvider>
-        </TokenDataContextProvider>
+
+            </BalancesContextProvider>
+          </TokenDataContextProvider>
+        </ChainDataContextProvider>
       </WalletContextProvider>
       <ToastContainer transition={Slide} position='bottom-left' closeOnClick theme='colored' />
     </>

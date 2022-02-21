@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Container, Navbar } from 'react-bootstrap'
 import quixLogo from 'assets/quix-logo.png'
 import WalletButton from 'components/WalletButton'
+import ChainSelector from 'components/ChainSelector'
 
 import { AiFillHome } from "react-icons/ai"
 import { FaExchangeAlt, FaPiggyBank } from "react-icons/fa"
@@ -53,6 +54,11 @@ const SideBar: React.FC = () => {
                         </StyledText>
                     </a>
                     <StyledFooter>
+                        <a style={{ textDecoration: 'none', color: 'whitesmoke' }}>
+                            <StyledText className='pt-3'>
+                                <StyledHeading><ChainSelector /></StyledHeading>
+                            </StyledText>
+                        </a>
                         <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
                             <StyledText className='pt-3'>
                                 <IoIosSettings fontSize='23px' style={{ marginRight: '1rem' }} />

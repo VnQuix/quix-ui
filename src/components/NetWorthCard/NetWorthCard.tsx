@@ -21,7 +21,6 @@ const NetWorthCard: React.FC = () => {
             }
         }
         setnetWorth(balance)
-        console.log(tokenBalances)
     }
         , [account, ethereum, tokenBalances, balance])
 

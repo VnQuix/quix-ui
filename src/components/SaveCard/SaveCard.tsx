@@ -1,11 +1,9 @@
 import React from 'react'
 
-import styled from 'styled-components'
-
 import { Card, Row, Col } from 'react-bootstrap'
+import { StyledRow } from 'components/PoolCard/PoolCard'
 
-
-const PoolCard: React.FC = () => {
+const SaveCard: React.FC = () => {
     return (
         <Card>
             <Card.Header>
@@ -18,13 +16,13 @@ const PoolCard: React.FC = () => {
                             #
                         </Col>
                         <Col xs={3}>
-                            Available Pools
+                            Assets
                         </Col>
                         <Col xs={3}>
-                            Liquidity
+                            Market Size
                         </Col>
                         <Col xs={2}>
-                            Fee APR
+                            APY
                         </Col>
                     </Row>
                 </StyledRow>
@@ -33,8 +31,4 @@ const PoolCard: React.FC = () => {
     )
 }
 
-export const StyledRow = styled.div`
-    font-weight: bold;
-`
-
-export default PoolCard
+export default SaveCard

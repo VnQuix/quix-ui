@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Dashboard from 'views/Dashboard';
 import Exchange from 'views/Exchange';
 import Pool from 'views/Pool';
+import Save from 'views/Save';
 
 import SideBar from 'components/SideBar'
 import InfoBar from 'components/InfoBar';
@@ -47,6 +48,7 @@ const App: React.FC = () => {
                   <Route path='/' component={Dashboard} exact />
                   <Route path='/exchange' component={Exchange} />
                   <Route path='/pool' component={Pool} />
+                  <Route path='/save' component={Save} />
                 </Switch>
               </StyledPageContentWrapper>
             </Col>

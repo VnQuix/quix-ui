@@ -4,9 +4,11 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components'
 
 import Dashboard from 'views/Dashboard';
+import Exchange from 'views/Exchange';
 
 import SideBar from 'components/SideBar'
 import InfoBar from 'components/InfoBar';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { Col, Container, Row } from "react-bootstrap"
 import { WalletContextProvider } from 'contexts/Wallet';
 import { TokenDataContextProvider } from 'contexts/TokenData';
@@ -29,27 +31,32 @@ const App: React.FC = () => {
   }, [account])
 
   return (
-    <Providers>
-      <Container fluid>
-        <Row>
-          <Col xs={2}>
-            <StyledSideBarWrapper>
-              <SideBar />
-            </StyledSideBarWrapper>
-          </Col>
-          <Col xs={6}>
-            <StyledPageContentWrapper>
-              <Dashboard />
-            </StyledPageContentWrapper>
-          </Col>
-          <Col xs={4}>
-            <StyledInfoBarWrapper>
-              <InfoBar />
-            </StyledInfoBarWrapper>
-          </Col>
-        </Row>
-      </Container>
-    </Providers>
+    <Router>
+      <Providers>
+        <Container fluid>
+          <Row>
+            <Col xs={2}>
+              <StyledSideBarWrapper>
+                <SideBar />
+              </StyledSideBarWrapper>
+            </Col>
+            <Col xs={6}>
+              <StyledPageContentWrapper>
+                <Switch>
+                  <Route path='/' component={Dashboard} exact />
+                  <Route path='/exchange' component={Exchange} exact />
+                </Switch>
+              </StyledPageContentWrapper>
+            </Col>
+            <Col xs={4}>
+              <StyledInfoBarWrapper>
+                <InfoBar />
+              </StyledInfoBarWrapper>
+            </Col>
+          </Row>
+        </Container>
+      </Providers>
+    </Router>
   );
 }
 

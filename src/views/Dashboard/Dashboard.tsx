@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Row, Col } from 'react-bootstrap'
-import NftCard from 'components/NftCard'
 import TokensCard from 'components/TokensCard'
 import NetWorthCard from 'components/NetWorthCard'
 
@@ -29,7 +28,7 @@ const Dashboard: React.FC = () => {
             <Row className='pt-4'>
                 <Col>
                     <StyledContentWrapper>
-                        <NftCard />
+
                     </StyledContentWrapper>
                 </Col>
             </Row>

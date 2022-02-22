@@ -1,17 +1,19 @@
-import React from 'react'
+import React from "react";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import { Container, Navbar } from 'react-bootstrap'
-import quixLogo from 'assets/quix-logo.png'
-import WalletButton from 'components/WalletButton'
-import ChainSelector from 'components/ChainSelector'
+import { Container, Navbar } from "react-bootstrap";
+import quixLogo from "assets/quix-logo.png";
+import WalletButton from "components/WalletButton";
+import ChainSelector from "components/ChainSelector";
 
-import { AiFillHome } from "react-icons/ai"
-import { FaExchangeAlt, FaPiggyBank } from "react-icons/fa"
-import { RiMoneyDollarCircleFill } from "react-icons/ri"
-import { IoIosSettings } from 'react-icons/io'
-import { HiDotsHorizontal } from 'react-icons/hi'
+import { AiFillHome } from "react-icons/ai";
+import { FaExchangeAlt, FaPiggyBank } from "react-icons/fa";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { IoIosSettings } from "react-icons/io";
+import { HiDotsHorizontal } from "react-icons/hi";
+
+import { Link } from 'react-router-dom'
 
 const SideBar: React.FC = () => {
     return (
@@ -25,91 +27,104 @@ const SideBar: React.FC = () => {
                             width="30"
                             height="30"
                             className="d-inline-block align-top"
-                        />{' '}&nbsp;
+                        />{" "}
+                        &nbsp;
                         <strong> Quix</strong>
                     </Navbar.Brand>
                     <WalletButton />
-                    <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
-                        <StyledText className='pt-5'>
-                            <AiFillHome fontSize='23px' style={{ marginRight: '1rem' }} />
+                    <Link to={'/'} style={{ textDecoration: "none", color: "whitesmoke" }}>
+                        <StyledText className="pt-5">
+                            <AiFillHome fontSize="23px" style={{ marginRight: "1rem" }} />
                             <StyledHeading>Home</StyledHeading>
                         </StyledText>
-                    </a>
-                    <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
-                        <StyledText className='pt-3'>
-                            <FaExchangeAlt fontSize='23px' style={{ marginRight: '1rem' }} />
+                    </Link>
+
+                    <Link to={"/exchange"} style={{ textDecoration: "none", color: "whitesmoke" }}>
+                        <StyledText className="pt-3">
+                            <FaExchangeAlt fontSize="23px" style={{ marginRight: "1rem" }} />
                             <StyledHeading>Exchange</StyledHeading>
                         </StyledText>
-                    </a>
-                    <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
-                        <StyledText className='pt-3'>
-                            <RiMoneyDollarCircleFill fontSize='23px' style={{ marginRight: '1rem' }} />
+                    </Link>
+                    <Link to={"/pool"} style={{ textDecoration: "none", color: "whitesmoke" }}>
+                        <StyledText className="pt-3">
+                            <RiMoneyDollarCircleFill
+                                fontSize="23px"
+                                style={{ marginRight: "1rem" }}
+                            />
                             <StyledHeading>Pool</StyledHeading>
                         </StyledText>
-                    </a>
-                    <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
-                        <StyledText className='pt-3'>
-                            <FaPiggyBank fontSize='23px' style={{ marginRight: '1rem' }} />
+                    </Link>
+                    <Link to={"/save"} style={{ textDecoration: "none", color: "whitesmoke" }}>
+                        <StyledText className="pt-3">
+                            <FaPiggyBank fontSize="23px" style={{ marginRight: "1rem" }} />
                             <StyledHeading>Save</StyledHeading>
                         </StyledText>
-                    </a>
+                    </Link>
                     <StyledFooter>
-                        <a style={{ textDecoration: 'none', color: 'whitesmoke' }}>
-                            <StyledText className='pt-3'>
-                                <StyledHeading><ChainSelector /></StyledHeading>
+                        <span style={{ textDecoration: "none", color: "whitesmoke" }}>
+                            <StyledText className="pt-3">
+                                <StyledHeading>
+                                    <ChainSelector />
+                                </StyledHeading>
                             </StyledText>
-                        </a>
-                        <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
-                            <StyledText className='pt-3'>
-                                <IoIosSettings fontSize='23px' style={{ marginRight: '1rem' }} />
+                        </span>
+                        <Link to={"/settings"} style={{ textDecoration: "none", color: "whitesmoke" }}>
+                            <StyledText className="pt-3">
+                                <IoIosSettings
+                                    fontSize="23px"
+                                    style={{ marginRight: "1rem" }}
+                                />
                                 <StyledHeading>Settings</StyledHeading>
                             </StyledText>
-                        </a>
-                        <a href='/' style={{ textDecoration: 'none', color: 'whitesmoke' }}>
-                            <StyledText className='pt-3'>
-                                <HiDotsHorizontal fontSize='23px' style={{ marginRight: '1rem' }} />
+                        </Link>
+                        <Link to={"/learnmore"} style={{ textDecoration: "none", color: "whitesmoke" }}>
+                            <StyledText className="pt-3">
+                                <HiDotsHorizontal
+                                    fontSize="23px"
+                                    style={{ marginRight: "1rem" }}
+                                />
                                 <StyledHeading>Learn More</StyledHeading>
                             </StyledText>
-                        </a>
+                        </Link>
                     </StyledFooter>
                 </StyledSideBarContent>
             </StyledSideBar>
         </Container>
-    )
-}
+    );
+};
 
 const StyledSideBar = styled.div`
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 9.7rem;
-    min-height: 100vh !important;
-    z-index: 100;
-    padding: 24px 0 0;
-    box-shadow: inset -1px 0 0 rgba(255, 255, 255, .3);    
-`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 9.7rem;
+  min-height: 100vh !important;
+  z-index: 100;
+  padding: 24px 0 0;
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.3);
+`;
 
 const StyledSideBarContent = styled.div`
-    margin-right: 0rem;
-    display: flex;
-    flex-direction: column;
-    min-width: 12rem;
-`
+  margin-right: 0rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 12rem;
+`;
 
 const StyledHeading = styled.h6`
-    font-weight: bold;
-    margin-top:0.2rem;
-`
+  font-weight: bold;
+  margin-top: 0.2rem;
+`;
 
 const StyledText = styled.div`
   position: static;
   display: flex;
   margin-left: 0.2rem;
-`
+`;
 
 const StyledFooter = styled.div`
-    position: absolute;
-    bottom: 3rem;
-`
+  position: absolute;
+  bottom: 3rem;
+`;
 
-export default SideBar
+export default SideBar;

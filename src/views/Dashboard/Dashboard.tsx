@@ -36,13 +36,13 @@ const Dashboard: React.FC = () => {
     )
 }
 
-const StyledTitle = styled.h4`
+export const StyledTitle = styled.h4`
     font-weight: bold;
     margin-top: 2rem;
     margin-left: 2rem;
 `
 
-const StyledContentWrapper = styled.div`
+export const StyledContentWrapper = styled.div`
     color: whitesmoke;
     margin-right: 2rem;
     margin-left: 2rem;

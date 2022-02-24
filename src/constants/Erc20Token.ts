@@ -3,6 +3,8 @@ import { TokenData } from "contexts/TokenData/TokenData";
 import ethLogo from "assets/Token/eth-logo.png";
 import maticLogo from "assets/Token/matic-logo.png";
 import daiLogo from "assets/Token/dai-logo.svg";
+import uniLogo from "assets/Token/uni-logo.png";
+import usdtLogo from "assets/Token/usdt-logo.png";
 
 //mainnet
 export const ETH: TokenData = {
@@ -84,7 +86,47 @@ export const POL_DAI: TokenData = {
   balance: "0",
 };
 
-export const EthWalletTokenList = [ETH, MATIC, DAI];
+//aave kovan
+export const KOV_DAI: TokenData = {
+  address: "0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",
+  chainId: "42",
+  id: "6",
+  image: daiLogo,
+  name: "Dai",
+  coinGeckoID: "dai",
+  symbol: "DAI",
+  priceUsd: "0",
+  dailyPercentChange: "0",
+  balance: "0",
+};
+
+export const KOV_UNI: TokenData = {
+  address: "0x075A36BA8846C6B6F53644fDd3bf17E5151789DC",
+  chainId: "42",
+  id: "7",
+  image: uniLogo,
+  name: "Uniswap",
+  coinGeckoID: "uniswap",
+  symbol: "UNI",
+  priceUsd: "0",
+  dailyPercentChange: "0",
+  balance: "0",
+};
+
+export const KOV_USDT: TokenData = {
+  address: "0x13512979ADE267AB5100878E2e0f485B568328a4",
+  chainId: "42",
+  id: "8",
+  image: usdtLogo,
+  name: "Tether",
+  coinGeckoID: "tether",
+  symbol: "USDT",
+  priceUsd: "0",
+  dailyPercentChange: "0",
+  balance: "0",
+};
+
+export const EthWalletTokenList = [ETH, MATIC, DAI, KOV_DAI, KOV_UNI, KOV_USDT];
 export const PolWalletTokenList = [POL_DAI, POL_MATIC, POL_WETH];
 
 const WalletTokenList = [EthWalletTokenList, PolWalletTokenList];

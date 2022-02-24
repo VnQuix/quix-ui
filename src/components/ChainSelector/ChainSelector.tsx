@@ -3,18 +3,20 @@ import React, { useEffect } from 'react'
 import Select from "react-select"
 import useChainData from 'hooks/useChainData'
 import useWallet from 'hooks/useWallet'
-import { POLYGON_CHAIN_DATA } from 'utils/connectors'
+import { POLYGON_CHAIN_DATA, RINKEBY_CHAIN_DATA, KOVAN_CHAIN_DATA } from 'utils/connectors'
 
 const ChainSelector: React.FC = () => {
-    const { chain, setMainnet, setPolygon } = useChainData()
+    const { chain, setMainnet, setPolygon, setRinkeby, setKovan, } = useChainData()
     const { chainId } = useWallet()
 
     useEffect(() => {
         if (chainId) {
             if (chainId === POLYGON_CHAIN_DATA.chainId) setPolygon()
+            if (chainId === RINKEBY_CHAIN_DATA.chainId) setRinkeby()
+            if (chainId === KOVAN_CHAIN_DATA.chainId) setKovan()
             else setMainnet()
         }
-    }, [chainId, setMainnet, setPolygon])
+    }, [chainId, setMainnet, setPolygon, setRinkeby, setKovan])
 
     const styles = {
         control: (styles: any) => ({
@@ -58,8 +60,11 @@ const ChainSelector: React.FC = () => {
             isSearchable={false}
             value={{ label: chain.name } as any}
             onChange={(chain) => {
+                if (chain.value === 'ethereum') setMainnet()
                 if (chain.value === 'polygon') setPolygon()
-                else setMainnet()
+                if (chain.value === 'rinkeby') setRinkeby()
+                if (chain.value === 'kovan') setKovan()
+
             }}
             options={[
                 {
@@ -69,6 +74,14 @@ const ChainSelector: React.FC = () => {
                 {
                     value: 'polygon',
                     label: 'Polygon',
+                },
+                {
+                    value: 'rinkeby',
+                    label: 'Rinkeby',
+                },
+                {
+                    value: 'kovan',
+                    label: 'Kovan',
                 },
             ]}
             styles={styles}

@@ -124,7 +124,7 @@ const StyledText = styled.div`
 
 const StyledFooter = styled.div`
   position: absolute;
-  bottom: 3rem;
+  bottom: 5rem;
 `;
 
 export default SideBar;

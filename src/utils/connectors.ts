@@ -13,7 +13,7 @@ export type ChainData = {
 export const MAINNET_CHAIN_DATA: ChainData = {
   name: "Ethereum",
   chainId: 1,
-  rpcUrl: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+  rpcUrl: "https://api.mycryptoapi.com/eth",
   icon: "https://raw.githubusercontent.com/sushiswap/icons/master/network/mainnet.jpg",
   coingeckoId: "ethereum",
 };
@@ -21,7 +21,31 @@ export const MAINNET_CHAIN_DATA: ChainData = {
 export const POLYGON_CHAIN_DATA: ChainData = {
   name: "Polygon",
   chainId: 137,
-  rpcUrl: "https://rpc-mainnet.maticvigil.com/",
+  rpcUrl: "https://rpc-mainnet.matic.network",
+  icon: "https://raw.githubusercontent.com/sushiswap/icons/master/network/polygon.jpg",
+  coingeckoId: "polygon-pos",
+};
+
+export const KOVAN_CHAIN_DATA: ChainData = {
+  name: "Kovan",
+  chainId: 42,
+  rpcUrl: "https://kovan.poa.network",
+  icon: "https://raw.githubusercontent.com/sushiswap/icons/master/network/mainnet.jpg",
+  coingeckoId: "ethereum",
+};
+
+export const RINKEBY_CHAIN_DATA: ChainData = {
+  name: "Rinkeby",
+  chainId: 4,
+  rpcUrl: "https://rinkeby.infura.io/v3/",
+  icon: "https://raw.githubusercontent.com/sushiswap/icons/master/network/mainnet.jpg",
+  coingeckoId: "ethereum",
+};
+
+export const MUMBAI_CHAIN_DATA: ChainData = {
+  name: "Mumbai",
+  chainId: 80001,
+  rpcUrl: "https://rpc-mumbai.maticvigil.com/",
   icon: "https://raw.githubusercontent.com/sushiswap/icons/master/network/polygon.jpg",
   coingeckoId: "polygon-pos",
 };

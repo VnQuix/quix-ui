@@ -22,7 +22,7 @@ export const ETH: TokenData = {
   polygonAddress: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
   id: "2",
   image: ethLogo,
-  name: "Wrapped Ether",
+  name: "Ether",
   coinGeckoID: "ethereum",
   symbol: "WETH",
   priceUsd: "0",

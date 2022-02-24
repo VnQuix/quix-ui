@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import Select from "react-select"
 import useChainData from 'hooks/useChainData'
 import useWallet from 'hooks/useWallet'
-import { POLYGON_CHAIN_DATA, RINKEBY_CHAIN_DATA, KOVAN_CHAIN_DATA } from 'utils/connectors'
+import { POLYGON_CHAIN_DATA, RINKEBY_CHAIN_DATA, KOVAN_CHAIN_DATA, MAINNET_CHAIN_DATA } from 'utils/connectors'
 
 const ChainSelector: React.FC = () => {
     const { chain, setMainnet, setPolygon, setRinkeby, setKovan, } = useChainData()
@@ -11,10 +11,11 @@ const ChainSelector: React.FC = () => {
 
     useEffect(() => {
         if (chainId) {
+            if (chainId === MAINNET_CHAIN_DATA.chainId) setMainnet()
             if (chainId === POLYGON_CHAIN_DATA.chainId) setPolygon()
             if (chainId === RINKEBY_CHAIN_DATA.chainId) setRinkeby()
             if (chainId === KOVAN_CHAIN_DATA.chainId) setKovan()
-            else setMainnet()
+
         }
     }, [chainId, setMainnet, setPolygon, setRinkeby, setKovan])
 

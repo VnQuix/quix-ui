@@ -43,7 +43,7 @@ function convertToTokenData(
     } else {
         return {
             address: token.address,
-            polygonAddress: token.polygonAddress,
+            chainId: token.chainId,
             id: token.id,
             image: token.image,
             name: token.name,

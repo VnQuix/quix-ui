@@ -3,19 +3,20 @@ import React, { useState, useCallback, useEffect } from 'react'
 import BalancesContext from './BalancesContext'
 import useWallet from 'hooks/useWallet'
 import { provider } from 'web3-core'
-import WalletTokenList from 'constants/Erc20Token'
+import { EthWalletTokenList, PolWalletTokenList } from 'constants/Erc20Token'
 import { TokenData } from 'contexts/TokenData/TokenData'
 import { getBalance } from 'utils'
 import { getPrice } from 'contexts/TokenData/TokenDataContextProvider'
 
 const BalancesContextProvider: React.FC = ({ children }) => {
     const [walletTokenBalance, setWalletTokenBalance] = useState<TokenData[]>([])
+    const [polwalletTokenBalance, setPolWalletTokenBalance] = useState<TokenData[]>([])
 
     const { account, ethereum, status, chainId } = useWallet()
 
     const fetchBalances = useCallback((userAddress: string, provider: provider) => {
-        const WalletTokens = WalletTokenList.map(async (e) => {
-            const TokenBalances = await getBalance(provider, e.polygonAddress, userAddress)
+        const WalletTokens = EthWalletTokenList.map(async (e) => {
+            const TokenBalances = await getBalance(provider, e.address, userAddress)
             const TokenPrices = await getPrice(e)
             const PriceConverted = TokenPrices[e.coinGeckoID]["usd"]
 
@@ -27,28 +28,45 @@ const BalancesContextProvider: React.FC = ({ children }) => {
 
     }, [setWalletTokenBalance])
 
+    const fetchPolBalances = useCallback((userAddress: string, provider: provider) => {
+        const WalletTokens = PolWalletTokenList.map(async (e) => {
+            const TokenBalances = await getBalance(provider, e.address, userAddress)
+            const TokenPrices = await getPrice(e)
+            const PriceConverted = TokenPrices[e.coinGeckoID]["usd"]
+
+            return convertToTokenData(e, JSON.stringify(TokenBalances), JSON.stringify(PriceConverted))
+        })
+        Promise.all(WalletTokens)
+            .then(setPolWalletTokenBalance)
+
+
+    }, [setPolWalletTokenBalance])
+
 
     useEffect(() => {
         if (status !== 'connected') {
             setWalletTokenBalance([])
+            setPolWalletTokenBalance([])
         }
     }, [status])
 
     useEffect(() => {
         if (account && ethereum) {
             fetchBalances(account, ethereum)
+            fetchPolBalances(account, ethereum)
             let refreshInterval = setInterval(() => fetchBalances(account, ethereum), 10000)
 
             return () => clearInterval(refreshInterval)
         }
-    }, [account, ethereum, fetchBalances, chainId])
+    }, [account, ethereum, fetchPolBalances, fetchBalances, chainId])
 
 
 
     return (
         <BalancesContext.Provider
             value={{
-                tokenBalances: walletTokenBalance
+                tokenBalances: walletTokenBalance,
+                tokenBalancesPol: polwalletTokenBalance
             }}
         >
             {children}
@@ -67,7 +85,7 @@ function convertToTokenData(
     } else {
         return {
             address: token.address,
-            polygonAddress: token.polygonAddress,
+            chainId: token.chainId,
             id: token.id,
             image: token.image,
             name: token.name,

@@ -7,7 +7,7 @@ import avaxLogo from "assets/Token/avax-logo.png";
 
 export const BTC: TokenData = {
   address: "",
-  polygonAddress: "",
+  chainId: "",
   id: "1",
   image: btcLogo,
   name: "Bitcoin",
@@ -20,7 +20,7 @@ export const BTC: TokenData = {
 
 export const ETH: TokenData = {
   address: "",
-  polygonAddress: "",
+  chainId: "",
   id: "2",
   image: ethLogo,
   name: "Ethereum",
@@ -33,7 +33,7 @@ export const ETH: TokenData = {
 
 export const ADA: TokenData = {
   address: "",
-  polygonAddress: "",
+  chainId: "",
   id: "3",
   image: adaLogo,
   name: "Cardano",
@@ -46,7 +46,7 @@ export const ADA: TokenData = {
 
 export const SOL: TokenData = {
   address: "",
-  polygonAddress: "",
+  chainId: "",
   id: "4",
   image: solLogo,
   name: "Solana",
@@ -59,7 +59,7 @@ export const SOL: TokenData = {
 
 export const AVAX: TokenData = {
   address: "",
-  polygonAddress: "",
+  chainId: "",
   id: "5",
   image: avaxLogo,
   name: "Avalanche",

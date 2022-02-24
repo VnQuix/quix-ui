@@ -8,7 +8,6 @@ interface ChainIdContextValues {
   setPolygon: () => void;
   setRinkeby: () => void;
   setKovan: () => void;
-  setMumbai: () => void;
 }
 
 const ChainIdContext = createContext<ChainIdContextValues>({
@@ -17,7 +16,6 @@ const ChainIdContext = createContext<ChainIdContextValues>({
   setPolygon: () => {},
   setRinkeby: () => {},
   setKovan: () => {},
-  setMumbai: () => {},
 });
 
 export default ChainIdContext;

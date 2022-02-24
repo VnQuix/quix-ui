@@ -1,6 +1,6 @@
 export interface TokenData {
   address: string;
-  polygonAddress: string;
+  chainId: string;
   id: string;
   image: string;
   coinGeckoID: string;

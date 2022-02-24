@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Card, Row, Col } from 'react-bootstrap'
 import useBalances from "hooks/useBalances"
+import useWallet from 'hooks/useWallet';
+import { POLYGON_CHAIN_DATA } from 'utils/connectors';
+import { TokenData } from 'contexts/TokenData/TokenData';
+
+
 const TokensCard: React.FC = () => {
-    const { tokenBalances } = useBalances()
+    const [token, setToken] = useState<TokenData[] | undefined>([])
+    const { tokenBalances, tokenBalancesPol } = useBalances()
+    const { chainId } = useWallet()
+    useEffect(() => {
+        if (chainId === POLYGON_CHAIN_DATA.chainId) setToken(tokenBalancesPol)
+        else setToken(tokenBalances)
+    }, [chainId, tokenBalances, tokenBalancesPol])
 
     return (
         <Card>
             <Card.Header><h5><strong>Wallet</strong></h5></Card.Header>
             <Card.Body>
                 <Card>
-                    {tokenBalances?.map((data) => {
+                    {token?.map((data) => {
                         if (data.balance !== "\"0\"") {
                             return (
                                 <Row className='pt-3' key={data.id}>

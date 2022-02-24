@@ -13,7 +13,7 @@ const InfoBar: React.FC = () => {
         <Container>
             <StyledInfoBar className="pt-4">
                 <StyledInfoBarContent>
-                    <Card style={{ minWidth: "22rem", color: "whitesmoke" }}>
+                    <Card style={{ minWidth: "23rem", color: "whitesmoke" }}>
                         <Card.Header style={{ fontWeight: "bold" }}>
                             Token Watchlist
                         </Card.Header>

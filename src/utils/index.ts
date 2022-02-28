@@ -2,7 +2,7 @@ import { provider } from "web3-core";
 import Web3 from "web3";
 import BigNumber from "./bignumber";
 import { AbiItem } from "web3-utils";
-import ERC20ABI from "sdk/abi/ERC20.json";
+import ERC20ABI from "abi/ERC20.json";
 
 const getBigNumber = (number: BigNumber | undefined) => {
   return number ? number : new BigNumber(0);

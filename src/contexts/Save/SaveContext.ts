@@ -1,11 +1,12 @@
 import { createContext } from "react";
-
 interface SaveContextProps {
-  getBalance: () => void;
+  balance: string;
+  debt: string;
 }
 
 const SaveContext = createContext<SaveContextProps>({
-  getBalance: () => {},
+  balance: "0",
+  debt: "0",
 });
 
 export default SaveContext;

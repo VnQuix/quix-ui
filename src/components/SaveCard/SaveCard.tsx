@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { Card, Row, Col } from 'react-bootstrap'
 import { StyledRow } from 'components/PoolCard/PoolCard'
-import useSave from 'hooks/useSave'
+
 
 const SaveCard: React.FC = () => {
-    const { getBalance } = useSave()
-
-    useEffect(() => {
-        const log = getBalance()
-        console.log(log)
-    })
     return (
         <Card>
             <Card.Header>

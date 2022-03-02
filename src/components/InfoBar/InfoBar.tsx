@@ -30,6 +30,7 @@ const InfoBar: React.FC = () => {
                                             className="pt-0"
                                         />{" "}
                                     </Col>
+                                    {console.log(data.priceUsd)}
                                     <Col xs={3}><StyledToken>{data.symbol}</StyledToken></Col>
                                     <Col xs={4} style={{ marginLeft: '1.4rem', textAlign: 'right' }}>{currencyFormat(Number(data.priceUsd))}</Col>
                                     <Col xs={3} style={{ color: parseFloat(data.dailyPercentChange) >= 0 ? 'green' : 'red', fontWeight: 'bold' }}>({parseFloat(data.dailyPercentChange).toFixed(2)}%)</Col>

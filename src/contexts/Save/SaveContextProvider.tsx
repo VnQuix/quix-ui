@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import SaveContext from './SaveContext'
 import { aaveAdapterContractAddress } from "constants/contractAddresses"
@@ -8,25 +8,59 @@ import { getContract } from 'utils/contractHelpers';
 import { AbiItem } from "web3-utils";
 
 const SaveContextProvider: React.FC = ({ children }) => {
-    const { ethereum, account } = useWallet()
+    const [balance, setBalance] = useState<string>("0")
+    const [debt, setDebt] = useState<string>("0")
+    const { ethereum, account, status } = useWallet()
 
-    const AaveTokenAdapter = getContract(
+    const AaveAdapter = getContract(
         ethereum,
         aaveAdapterContractAddress,
         AaveAdapterAbi.abi as unknown as AbiItem
     )
-    const getBalance = async () => {
+
+    const getBalance = useCallback(async () => {
         try {
-            const balance = await AaveTokenAdapter.methods.getCollateralInEth(account).call()
-            return balance
+            const balance = await AaveAdapter.methods.getCollateralInEth(account).call()
+            setBalance(balance)
         } catch (e) {
             return "Error"
         }
-    }
+    }, [account, AaveAdapter.methods])
+
+
+
+    const getDebt = useCallback(async () => {
+        try {
+            const debt = await AaveAdapter.methods.getDebtInEth(account).call()
+            setDebt(debt)
+        } catch (e) {
+            return "Error"
+        }
+    }, [account, AaveAdapter.methods])
+
+    useEffect(() => {
+        if (status !== 'connected') {
+            setBalance("0")
+            setDebt("0")
+        }
+    }, [status])
+
+    useEffect(() => {
+        if (account && ethereum) {
+            getBalance()
+            getDebt()
+            let refreshInterval = setInterval(() => getBalance(), 10000)
+
+            return () => clearInterval(refreshInterval)
+        }
+    }, [account, ethereum, getBalance, getDebt])
+
 
     return (
         <SaveContext.Provider value={{
-            getBalance
+            balance,
+            debt
+
         }}>
             {children}
         </SaveContext.Provider>

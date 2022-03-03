@@ -2,8 +2,8 @@ import { createContext } from "react";
 interface SaveContextProps {
   balance: string;
   debt: string;
-  deposit: (token: string, amount: number) => void;
-  withdraw: (token: string, amount: number) => void;
+  deposit: (token: string, amount: any) => void;
+  withdraw: (token: string, amount: any) => void;
 }
 
 const SaveContext = createContext<SaveContextProps>({

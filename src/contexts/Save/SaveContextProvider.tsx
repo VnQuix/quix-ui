@@ -7,6 +7,8 @@ import AaveInteractiveAdapterAbi from "abi/AaveInteractiveAdapter.json"
 import useWallet from 'hooks/useWallet';
 import { getContract } from 'utils/contractHelpers';
 import { AbiItem } from "web3-utils";
+import { ethers } from "ethers";
+import { getERC20Contract } from 'utils'
 
 const SaveContextProvider: React.FC = ({ children }) => {
     const [balance, setBalance] = useState<string>("0")
@@ -25,21 +27,24 @@ const SaveContextProvider: React.FC = ({ children }) => {
         AaveInteractiveAdapterAbi.abi as unknown as AbiItem
     )
 
-    const deposit = async (token: string, amount: number) => {
+    const deposit = async (token: string, amount: any) => {
         try {
-            await AaveInteractiveAdapter.methods.deposit(token, amount).call()
+            await AaveInteractiveAdapter.methods.deposit(token, amount).send(
+                { from: account, gas: 800000 })
         } catch (error) {
             console.log(error)
         }
     }
 
-    const withdraw = async (token: string, amount: number) => {
+    const withdraw = async (token: string, amount: any) => {
         try {
-            await AaveInteractiveAdapter.methods.withdraw(token, amount).call()
+            await AaveInteractiveAdapter.methods.withdraw(token, amount).send(
+                { from: account, gas: 800000 })
         } catch (error) {
             console.log(error)
         }
     }
+
 
     const getBalance = useCallback(async () => {
         try {
@@ -84,7 +89,7 @@ const SaveContextProvider: React.FC = ({ children }) => {
             balance,
             debt,
             deposit,
-            withdraw
+            withdraw,
 
         }}>
             {children}

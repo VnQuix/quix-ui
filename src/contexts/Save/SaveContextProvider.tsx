@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
 import SaveContext from './SaveContext'
-import { aaveAdapterContractAddress } from "constants/contractAddresses"
+import { aaveAdapterContractAddress, aaveInteractiveAdapterContractAddress } from "constants/contractAddresses"
 import AaveAdapterAbi from "abi/AaveAdapter.json"
+import AaveInteractiveAdapterAbi from "abi/AaveInteractiveAdapter.json"
 import useWallet from 'hooks/useWallet';
 import { getContract } from 'utils/contractHelpers';
 import { AbiItem } from "web3-utils";
@@ -17,6 +18,28 @@ const SaveContextProvider: React.FC = ({ children }) => {
         aaveAdapterContractAddress,
         AaveAdapterAbi.abi as unknown as AbiItem
     )
+
+    const AaveInteractiveAdapter = getContract(
+        ethereum,
+        aaveInteractiveAdapterContractAddress,
+        AaveInteractiveAdapterAbi.abi as unknown as AbiItem
+    )
+
+    const deposit = async (token: string, amount: number) => {
+        try {
+            await AaveInteractiveAdapter.methods.deposit(token, amount).call()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const withdraw = async (token: string, amount: number) => {
+        try {
+            await AaveInteractiveAdapter.methods.withdraw(token, amount).call()
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const getBalance = useCallback(async () => {
         try {
@@ -59,7 +82,9 @@ const SaveContextProvider: React.FC = ({ children }) => {
     return (
         <SaveContext.Provider value={{
             balance,
-            debt
+            debt,
+            deposit,
+            withdraw
 
         }}>
             {children}

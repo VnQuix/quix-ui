@@ -2,12 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react'
 
 import SaveContext from './SaveContext'
 import { aavePoolContractAddress } from "constants/contractAddresses"
-
+import { RIK_DAI } from 'constants/Erc20Token';
 
 import useWallet from 'hooks/useWallet';
 import { getContract } from 'utils/contractHelpers';
 import { AbiItem } from "web3-utils";
 import PoolV3Artifact from "@aave/core-v3/artifacts/contracts/protocol/pool/Pool.sol/Pool.json"
+import BigNumber from 'bignumber.js';
+import Web3 from "web3";
 
 
 const SaveContextProvider: React.FC = ({ children }) => {
@@ -20,7 +22,6 @@ const SaveContextProvider: React.FC = ({ children }) => {
         aavePoolContractAddress,
         PoolV3Artifact.abi as unknown as AbiItem
     )
-
 
     const getData = useCallback(async () => {
         try {
@@ -50,11 +51,41 @@ const SaveContextProvider: React.FC = ({ children }) => {
         }
     }, [account, ethereum, getData])
 
+    const supply = useCallback(
+        async () => {
+            console.log(RIK_DAI.address, Web3.utils.toWei("50", "ether"), account, "0")
+            await Pool.methods.supply(RIK_DAI.address, Web3.utils.toWei("50", "ether"), account, "0")
+                .send({
+                    from: account,
+                    gas: 2100000,
+                    gasPrice: 8000000000
+                })
+
+        },
+        [account, Pool.methods]
+    )
+
+    const withdraw = useCallback(
+        async () => {
+            await Pool.methods.withdraw(RIK_DAI.address, Web3.utils.toWei("50", "ether"), account)
+                .send({
+                    from: account,
+                    gas: 2100000,
+                    gasPrice: 8000000000
+                })
+
+        },
+        [account, Pool.methods]
+    )
+
+
 
     return (
         <SaveContext.Provider value={{
             balance,
             debt,
+            supply,
+            withdraw
         }}>
             {children}
         </SaveContext.Provider>

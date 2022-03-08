@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { StyledTitle, StyledContentWrapper } from "views/Dashboard/Dashboard";
 import { StyledTitle2 } from "views/Exchange/Exchange";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import SaveCard from "components/SaveCard";
 import useSave from 'hooks/useSave'
 import aaveLogo from "assets/protocol/aave-logo.svg"
@@ -13,18 +13,18 @@ import ethLogo from "assets/Token/eth-logo.png"
 
 const Save: React.FC = () => {
     const [balanceUpdated, setBalanceUpdated] = useState<string>("0")
-    const { balance } = useSave()
+    const { balance, debt, supply } = useSave()
     const { account, ethereum } = useWallet()
 
     useEffect(() => {
         if (account && ethereum) {
             setBalanceUpdated(balance)
         }
-        console.log(balance)
     }, [setBalanceUpdated, account, ethereum, balance])
 
     return (
         <div>
+            <Button onClick={supply}>TEST</Button>
             <StyledTitle>Save</StyledTitle>
             <hr />
             <Row>

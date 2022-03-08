@@ -1,22 +1,15 @@
-import React, { useCallback } from 'react'
+import React, { useState } from 'react'
 
 import { Card, Row, Col, Button } from 'react-bootstrap'
 import { StyledRow } from 'components/PoolCard/PoolCard'
 import SaveTokenList from 'constants/SaveTokens'
 import useSave from 'hooks/useSave'
 import SaveModal from 'components/SaveModal'
+import { SaveTokenMarket } from 'contexts/Save/types'
 
 const SaveCard: React.FC = () => {
+    const [infoData, setinfoData] = useState<SaveTokenMarket>(SaveTokenList[0])
     const { isShowingSaveModal, onCloseSaveModal, onOpenSaveModal } = useSave()
-
-    const onClick = useCallback(
-        () => {
-            onOpenSaveModal()
-        }
-
-        , [onOpenSaveModal],
-    )
-
 
     return (
         <Card>
@@ -41,8 +34,13 @@ const SaveCard: React.FC = () => {
                     </Row>
                 </StyledRow>
                 <br className='pt-3' />
-                {SaveTokenList.map((data) => (
-                    <StyledRow className='pt-3'>
+                {SaveTokenList.map((data) => {
+                    const onClick =
+                        () => {
+                            onOpenSaveModal()
+                            setinfoData(data)
+                        }
+                    return (<StyledRow className='pt-3'>
                         <Row>
                             <Col xs={1}>
                                 {data.id}
@@ -67,16 +65,18 @@ const SaveCard: React.FC = () => {
                             <Col xs={3} >
                                 <Button variant='success' style={{ marginBottom: '0.5rem' }} onClick={onClick}>
                                     Deposit
+
                                 </Button>
                                 <SaveModal
                                     isOpen={isShowingSaveModal}
                                     onDismiss={onCloseSaveModal}
-                                    data={data}
+                                    data={infoData}
                                 />
+
                             </Col>
                         </Row>
-                    </StyledRow>
-                ))}
+                    </StyledRow>)
+                })}
 
 
             </Card.Body>

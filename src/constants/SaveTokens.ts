@@ -2,8 +2,6 @@ import { SaveTokenMarket } from "contexts/Save/types";
 import usdtLogo from "assets/Token/usdt-logo.png";
 import daiLogo from "assets/Token/dai-logo.svg";
 import usdcLogo from "assets/Token/usdc-logo.svg";
-import batLogo from "assets/Token/bat-logo.png";
-import yearnLogo from "assets/Token/yearn-logo.svg";
 
 export const USDT: SaveTokenMarket = {
   id: 1,

@@ -2,8 +2,8 @@ import { createContext } from "react";
 interface SaveContextProps {
   balance: string;
   debt: string;
-  supply: () => void;
-  withdraw: () => void;
+  supply: (amount: string, address: string) => void;
+  withdraw: (amount: string, address: string) => void;
   isShowingSaveModal: boolean;
   onOpenSaveModal: (...args: any[]) => any;
   onCloseSaveModal: (...args: any[]) => any;

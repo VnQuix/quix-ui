@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react'
 
 import SaveContext from './SaveContext'
 import { aavePoolContractAddress } from "constants/contractAddresses"
-import { RIK_DAI } from 'constants/Erc20Token';
 
 import useWallet from 'hooks/useWallet';
 import { getContract } from 'utils/contractHelpers';
@@ -52,37 +51,25 @@ const SaveContextProvider: React.FC = ({ children }) => {
     }, [account, ethereum, getData])
 
     const supply = useCallback(
-        async () => {
-            await Pool.methods.supply(RIK_DAI.address, Web3.utils.toWei("5", "ether"), account, 0)
+        async (amount: string, address: string) => {
+            await Pool.methods.supply(address, Web3.utils.toWei(amount, "ether"), account, 0)
                 .send({
                     from: account,
                     gas: 2100000,
                     gasPrice: 8000000000
                 })
-                .once('transactionHash', (hash: any) => {
-                    // transaction hash
-                })
-                .on('confirmation', (number: any, receipt: any) => {
-                    // number of confirmations
-                })
-                .on('error', (error: any) => {
-                    console.log(error);
-                });
-
         },
         [account, Pool.methods]
     )
 
     const withdraw = useCallback(
-        async () => {
-            await Pool.methods.withdraw(RIK_DAI.address, Web3.utils.toWei("50", "ether"), account)
+        async (amount: string, address: string) => {
+            await Pool.methods.withdraw(address, Web3.utils.toWei(amount, "ether"), account)
                 .send({
                     from: account,
                     gas: 2100000,
                     gasPrice: 8000000000
                 })
-
-
         },
         [account, Pool.methods]
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styled from 'styled-components'
 
@@ -19,12 +19,22 @@ interface ModalProps {
 
 
 const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
+    const [amount, setAmount] = useState<string>("0")
     const {
         account,
         ethereum,
     } = useWallet()
 
     const { supply } = useSave()
+
+    const supplyAsset = (e: any) => {
+        try {
+            e.preventDefault()
+            supply(amount, data.address)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const approval = useApproval(data.address, aavePoolContractAddress)
     const approvalRequired = !approval.isApproved
@@ -89,6 +99,7 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                                             <Form.Group className='mb-3'>
                                                 <Form.Control
                                                     placeholder='0.0'
+                                                    onChange={(e) => setAmount(e.target.value)}
                                                     style={{ backgroundColor: '#444', color: 'whitesmoke', minHeight: '3rem' }}
                                                 />
                                             </Form.Group>
@@ -120,7 +131,7 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                         {(approvalRequired) ? (
                             <Button variant='danger' onClick={approval.onApprove} className='py-2'>Approve</Button>
                         ) : (
-                            <Button variant='success' onClick={approval.onApprove} className='py-2'>Deposit</Button>
+                            <Button variant='success' onClick={supplyAsset} className='py-2'>Deposit</Button>
                         )}
                     </Row>
                 </Container>

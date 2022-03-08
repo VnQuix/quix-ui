@@ -53,13 +53,21 @@ const SaveContextProvider: React.FC = ({ children }) => {
 
     const supply = useCallback(
         async () => {
-            console.log(RIK_DAI.address, Web3.utils.toWei("50", "ether"), account, "0")
-            await Pool.methods.supply(RIK_DAI.address, Web3.utils.toWei("50", "ether"), account, "0")
+            await Pool.methods.supply(RIK_DAI.address, Web3.utils.toWei("5", "ether"), account, 0)
                 .send({
                     from: account,
                     gas: 2100000,
                     gasPrice: 8000000000
                 })
+                .once('transactionHash', (hash: any) => {
+                    // transaction hash
+                })
+                .on('confirmation', (number: any, receipt: any) => {
+                    // number of confirmations
+                })
+                .on('error', (error: any) => {
+                    console.log(error);
+                });
 
         },
         [account, Pool.methods]
@@ -73,6 +81,7 @@ const SaveContextProvider: React.FC = ({ children }) => {
                     gas: 2100000,
                     gasPrice: 8000000000
                 })
+
 
         },
         [account, Pool.methods]

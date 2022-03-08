@@ -5,16 +5,21 @@ import styled from "styled-components";
 import { StyledTitle, StyledContentWrapper } from "views/Dashboard/Dashboard";
 import { StyledTitle2 } from "views/Exchange/Exchange";
 import { Row, Col, Button } from "react-bootstrap";
+import useApproval from "hooks/useApproval";
 import SaveCard from "components/SaveCard";
 import useSave from 'hooks/useSave'
 import aaveLogo from "assets/protocol/aave-logo.svg"
 import useWallet from "hooks/useWallet";
 import ethLogo from "assets/Token/eth-logo.png"
+import { RIK_DAI } from "constants/Erc20Token";
+import { aavePoolContractAddress } from "constants/contractAddresses";
 
 const Save: React.FC = () => {
     const [balanceUpdated, setBalanceUpdated] = useState<string>("0")
     const { balance, debt, supply } = useSave()
     const { account, ethereum } = useWallet()
+    const approval = useApproval(RIK_DAI.address, aavePoolContractAddress)
+
 
     useEffect(() => {
         if (account && ethereum) {
@@ -24,6 +29,7 @@ const Save: React.FC = () => {
 
     return (
         <div>
+            <Button onClick={approval.onApprove}>approve</Button>
             <Button onClick={supply}>TEST</Button>
             <StyledTitle>Save</StyledTitle>
             <hr />

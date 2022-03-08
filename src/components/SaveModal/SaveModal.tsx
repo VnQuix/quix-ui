@@ -128,11 +128,12 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                         </Button>
                     </Row>
                     <Row className='pt-4'>
-                        {(approvalRequired) ? (
-                            <Button variant='danger' onClick={approval.onApprove} className='py-2'>Approve</Button>
-                        ) : (
-                            <Button variant='success' onClick={supplyAsset} className='py-2'>Deposit</Button>
-                        )}
+                        {
+                            (approvalRequired) ? (
+                                <Button variant='danger' onClick={approval.onApprove} className='py-2'>Approve</Button>
+                            ) : (
+                                <Button variant='success' onClick={supplyAsset} className='py-2'>Deposit</Button>
+                            )}
                     </Row>
                 </Container>
             </Modal.Body>

@@ -55,8 +55,7 @@ const SaveContextProvider: React.FC = ({ children }) => {
             await Pool.methods.supply(address, Web3.utils.toWei(amount, "ether"), account, 0)
                 .send({
                     from: account,
-                    gas: 2100000,
-                    gasPrice: 8000000000
+                    gas: 800000,
                 })
         },
         [account, Pool.methods]
@@ -67,8 +66,8 @@ const SaveContextProvider: React.FC = ({ children }) => {
             await Pool.methods.withdraw(address, Web3.utils.toWei(amount, "ether"), account)
                 .send({
                     from: account,
-                    gas: 2100000,
-                    gasPrice: 8000000000
+                    gas: 80000,
+
                 })
         },
         [account, Pool.methods]

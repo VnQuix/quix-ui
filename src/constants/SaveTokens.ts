@@ -1,26 +1,15 @@
 import { SaveTokenMarket } from "contexts/Save/types";
-import usdtLogo from "assets/Token/usdt-logo.png";
 import daiLogo from "assets/Token/dai-logo.svg";
-import usdcLogo from "assets/Token/usdc-logo.svg";
+import aaveLogo from "assets/protocol/aave-logo.svg";
 
-export const USDT: SaveTokenMarket = {
+export const AAVE: SaveTokenMarket = {
   id: 1,
-  assetName: "USDT Coin",
-  symbol: "USDT",
+  assetName: "Aave",
+  symbol: "AAVE",
   marketSize: "117,749.08Y",
   APY: 0,
-  address: "0xa0704bfa9E17cF4a1d74A60db7bcdA1B5D00D3E6",
-  image: usdtLogo,
-};
-
-export const USDC: SaveTokenMarket = {
-  id: 2,
-  assetName: "USD Coin",
-  symbol: "USDC",
-  marketSize: "9.69Z",
-  APY: 0.02,
-  address: "0x5B8B635c2665791cf62fe429cB149EaB42A3cEd8",
-  image: usdcLogo,
+  address: "0x953af320e2bD3041c4e56BB3a30E7f613a1f3C1A",
+  image: aaveLogo,
 };
 
 export const DAI: SaveTokenMarket = {
@@ -33,6 +22,6 @@ export const DAI: SaveTokenMarket = {
   image: daiLogo,
 };
 
-const SaveTokenList = [USDT, USDC, DAI];
+const SaveTokenList = [AAVE, DAI];
 
 export default SaveTokenList;

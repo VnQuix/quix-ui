@@ -16,13 +16,13 @@ import ontoLogo from "assets/Wallet/onto-wallet.png"
 import trustWalletLogo from "assets/Wallet/trust-wallet.svg"
 import ledgerWalletLogo from "assets/Wallet/ledger-wallet.png"
 
-interface WalletModalProps {
+export interface ModalProps {
     isOpen: boolean
     onDismiss: () => void
 }
 
 
-const WalletModal: React.FC<WalletModalProps> = ({ isOpen, onDismiss }) => {
+const WalletModal: React.FC<ModalProps> = ({ isOpen, onDismiss }) => {
     const { account, connect } = useWallet()
 
     const handleConnectMetaMask = useCallback(

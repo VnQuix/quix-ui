@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import { Card, Row, Col, Button } from 'react-bootstrap'
 import { StyledRow } from 'components/PoolCard/PoolCard'
 import SaveTokenList from 'constants/SaveTokens'
-import useWallet from 'hooks/useWallet'
-import BigNumber from 'bignumber.js'
+import useSave from 'hooks/useSave'
+import SaveModal from 'components/SaveModal'
 
 const SaveCard: React.FC = () => {
-    const { account, ethereum } = useWallet()
+    const { isShowingSaveModal, onCloseSaveModal, onOpenSaveModal } = useSave()
+
+    const onClick = useCallback(
+        () => {
+            onOpenSaveModal()
+        }
+
+        , [onOpenSaveModal],
+    )
+
+
     return (
         <Card>
-            <Button>TEST</Button>
             <Card.Header>
                 <h5 className='pt-2'><strong>Explore Opportunities</strong></h5>
             </Card.Header>
@@ -56,9 +65,14 @@ const SaveCard: React.FC = () => {
                                 {data.APY}%
                             </Col>
                             <Col xs={3} >
-                                <Button variant='success' style={{ marginBottom: '0.5rem' }}>
+                                <Button variant='success' style={{ marginBottom: '0.5rem' }} onClick={onClick}>
                                     Deposit
                                 </Button>
+                                <SaveModal
+                                    isOpen={isShowingSaveModal}
+                                    onDismiss={onCloseSaveModal}
+                                    data={data}
+                                />
                             </Col>
                         </Row>
                     </StyledRow>

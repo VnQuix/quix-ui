@@ -4,6 +4,9 @@ interface SaveContextProps {
   debt: string;
   supply: () => void;
   withdraw: () => void;
+  isShowingSaveModal: boolean;
+  onOpenSaveModal: (...args: any[]) => any;
+  onCloseSaveModal: (...args: any[]) => any;
 }
 
 const SaveContext = createContext<SaveContextProps>({
@@ -11,6 +14,9 @@ const SaveContext = createContext<SaveContextProps>({
   debt: "0",
   supply: () => {},
   withdraw: () => {},
+  isShowingSaveModal: false,
+  onOpenSaveModal: () => {},
+  onCloseSaveModal: () => {},
 });
 
 export default SaveContext;

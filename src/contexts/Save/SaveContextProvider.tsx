@@ -8,13 +8,13 @@ import useWallet from 'hooks/useWallet';
 import { getContract } from 'utils/contractHelpers';
 import { AbiItem } from "web3-utils";
 import PoolV3Artifact from "@aave/core-v3/artifacts/contracts/protocol/pool/Pool.sol/Pool.json"
-import BigNumber from 'bignumber.js';
 import Web3 from "web3";
 
 
 const SaveContextProvider: React.FC = ({ children }) => {
     const [balance, setBalance] = useState<string>("0")
     const [debt, setDebt] = useState<string>("0")
+    const [isShowingSaveModal, setIsShowingSaveModal] = useState<boolean>(false)
     const { ethereum, account, status } = useWallet()
 
     const Pool = getContract(
@@ -87,6 +87,19 @@ const SaveContextProvider: React.FC = ({ children }) => {
         [account, Pool.methods]
     )
 
+    const onOpenSaveModal = useCallback(
+        () => {
+            setIsShowingSaveModal(true)
+        },
+        [setIsShowingSaveModal],
+    )
+
+    const onCloseSaveModal = useCallback(
+        () => {
+            setIsShowingSaveModal(false)
+        },
+        [setIsShowingSaveModal],
+    )
 
 
     return (
@@ -94,7 +107,10 @@ const SaveContextProvider: React.FC = ({ children }) => {
             balance,
             debt,
             supply,
-            withdraw
+            withdraw,
+            isShowingSaveModal,
+            onOpenSaveModal,
+            onCloseSaveModal
         }}>
             {children}
         </SaveContext.Provider>

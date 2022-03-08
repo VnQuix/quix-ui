@@ -3,11 +3,14 @@ import React from 'react'
 import { Card, Row, Col, Button } from 'react-bootstrap'
 import { StyledRow } from 'components/PoolCard/PoolCard'
 import SaveTokenList from 'constants/SaveTokens'
+import useWallet from 'hooks/useWallet'
+import BigNumber from 'bignumber.js'
 
 const SaveCard: React.FC = () => {
-
+    const { account, ethereum } = useWallet()
     return (
         <Card>
+            <Button>TEST</Button>
             <Card.Header>
                 <h5 className='pt-2'><strong>Explore Opportunities</strong></h5>
             </Card.Header>

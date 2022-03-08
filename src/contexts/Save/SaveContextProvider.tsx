@@ -1,70 +1,37 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
 import SaveContext from './SaveContext'
-import { aaveAdapterContractAddress, aaveInteractiveAdapterContractAddress } from "constants/contractAddresses"
-import AaveAdapterAbi from "abi/AaveAdapter.json"
-import AaveInteractiveAdapterAbi from "abi/AaveInteractiveAdapter.json"
+import { aavePoolContractAddress } from "constants/contractAddresses"
+
+
 import useWallet from 'hooks/useWallet';
 import { getContract } from 'utils/contractHelpers';
 import { AbiItem } from "web3-utils";
-import { ethers } from "ethers";
-import { getERC20Contract } from 'utils'
+import PoolV3Artifact from "@aave/core-v3/artifacts/contracts/protocol/pool/Pool.sol/Pool.json"
+
 
 const SaveContextProvider: React.FC = ({ children }) => {
     const [balance, setBalance] = useState<string>("0")
     const [debt, setDebt] = useState<string>("0")
     const { ethereum, account, status } = useWallet()
 
-    const AaveAdapter = getContract(
+    const Pool = getContract(
         ethereum,
-        aaveAdapterContractAddress,
-        AaveAdapterAbi.abi as unknown as AbiItem
+        aavePoolContractAddress,
+        PoolV3Artifact.abi as unknown as AbiItem
     )
 
-    const AaveInteractiveAdapter = getContract(
-        ethereum,
-        aaveInteractiveAdapterContractAddress,
-        AaveInteractiveAdapterAbi.abi as unknown as AbiItem
-    )
 
-    const deposit = async (token: string, amount: any) => {
+    const getData = useCallback(async () => {
         try {
-            await AaveInteractiveAdapter.methods.deposit(token, amount).send(
-                { from: account, gas: 800000 })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    const withdraw = async (token: string, amount: any) => {
-        try {
-            await AaveInteractiveAdapter.methods.withdraw(token, amount).send(
-                { from: account, gas: 800000 })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-
-    const getBalance = useCallback(async () => {
-        try {
-            const balance = await AaveAdapter.methods.getCollateralInEth(account).call()
-            setBalance(balance)
+            const data = await Pool.methods.getUserAccountData(account).call()
+            setBalance(data[0])
+            setDebt(data[1])
         } catch (e) {
             return "Error"
         }
-    }, [account, AaveAdapter.methods])
+    }, [account, Pool.methods])
 
-
-
-    const getDebt = useCallback(async () => {
-        try {
-            const debt = await AaveAdapter.methods.getDebtInEth(account).call()
-            setDebt(debt)
-        } catch (e) {
-            return "Error"
-        }
-    }, [account, AaveAdapter.methods])
 
     useEffect(() => {
         if (status !== 'connected') {
@@ -75,22 +42,19 @@ const SaveContextProvider: React.FC = ({ children }) => {
 
     useEffect(() => {
         if (account && ethereum) {
-            getBalance()
-            getDebt()
-            let refreshInterval = setInterval(() => getBalance(), 10000)
+            getData()
+
+            let refreshInterval = setInterval(() => getData(), 10000)
 
             return () => clearInterval(refreshInterval)
         }
-    }, [account, ethereum, getBalance, getDebt])
+    }, [account, ethereum, getData])
 
 
     return (
         <SaveContext.Provider value={{
             balance,
             debt,
-            deposit,
-            withdraw,
-
         }}>
             {children}
         </SaveContext.Provider>

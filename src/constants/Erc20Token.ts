@@ -5,6 +5,7 @@ import maticLogo from "assets/Token/matic-logo.png";
 import daiLogo from "assets/Token/dai-logo.svg";
 import uniLogo from "assets/Token/uni-logo.png";
 import usdtLogo from "assets/Token/usdt-logo.png";
+import aaveLogo from "assets/protocol/aave-logo.svg";
 
 //mainnet
 export const ETH: TokenData = {
@@ -126,7 +127,41 @@ export const KOV_USDT: TokenData = {
   balance: "0",
 };
 
-export const EthWalletTokenList = [ETH, MATIC, DAI, KOV_DAI, KOV_UNI, KOV_USDT];
+export const RIK_DAI: TokenData = {
+  address: "0x2Ec4c6fCdBF5F9beECeB1b51848fc2DB1f3a26af",
+  chainId: "4",
+  id: "9",
+  image: daiLogo,
+  name: "Dai",
+  coinGeckoID: "dai",
+  symbol: "DAI",
+  priceUsd: "0",
+  dailyPercentChange: "0",
+  balance: "0",
+};
+
+export const RIK_AAVE: TokenData = {
+  address: "0x953af320e2bD3041c4e56BB3a30E7f613a1f3C1A",
+  chainId: "4",
+  id: "10",
+  image: aaveLogo,
+  name: "Aave",
+  coinGeckoID: "aave",
+  symbol: "AAVE",
+  priceUsd: "0",
+  dailyPercentChange: "0",
+  balance: "0",
+};
+
+export const EthWalletTokenList = [
+  ETH,
+  MATIC,
+  DAI,
+  RIK_DAI,
+  KOV_UNI,
+  KOV_USDT,
+  RIK_AAVE,
+];
 export const PolWalletTokenList = [POL_DAI, POL_MATIC, POL_WETH];
 
 const WalletTokenList = [EthWalletTokenList, PolWalletTokenList];

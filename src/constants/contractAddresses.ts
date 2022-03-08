@@ -1,4 +1,2 @@
-export const aaveAdapterContractAddress =
-  "0x86ceb1ed190de05c473d92c35882a28a8a112f91";
-export const aaveInteractiveAdapterContractAddress =
-  "0x1cae835D8530935C5aE891EF10321588A3812AcC";
+export const aavePoolContractAddress =
+  "0x3561c45840e2681495ACCa3c50Ef4dAe330c94F8";

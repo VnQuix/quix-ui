@@ -7,6 +7,9 @@ import Davatar from "@davatar/react"
 import { shortenAddress } from '@usedapp/core'
 import useWallet from 'hooks/useWallet'
 import { SaveTokenMarket } from 'contexts/Save/types'
+import useApproval from "hooks/useApproval"
+import { aavePoolContractAddress } from 'constants/contractAddresses'
+import useSave from "hooks/useSave"
 
 interface ModalProps {
     isOpen: boolean
@@ -20,6 +23,11 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
         account,
         ethereum,
     } = useWallet()
+
+    const { supply } = useSave()
+
+    const approval = useApproval(data.address, aavePoolContractAddress)
+    const approvalRequired = !approval.isApproved
 
     return (
         <Modal
@@ -109,7 +117,11 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                         </Button>
                     </Row>
                     <Row className='pt-4'>
-                        <Button variant='success'>Deposit</Button>
+                        {(approvalRequired) ? (
+                            <Button variant='danger' onClick={approval.onApprove} className='py-2'>Approve</Button>
+                        ) : (
+                            <Button variant='success' onClick={approval.onApprove} className='py-2'>Deposit</Button>
+                        )}
                     </Row>
                 </Container>
             </Modal.Body>

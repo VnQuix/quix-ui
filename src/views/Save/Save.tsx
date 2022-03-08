@@ -16,10 +16,8 @@ import { aavePoolContractAddress } from "constants/contractAddresses";
 
 const Save: React.FC = () => {
     const [balanceUpdated, setBalanceUpdated] = useState<string>("0")
-    const { balance, debt, supply } = useSave()
+    const { balance, } = useSave()
     const { account, ethereum } = useWallet()
-    const approval = useApproval(RIK_DAI.address, aavePoolContractAddress)
-
 
     useEffect(() => {
         if (account && ethereum) {
@@ -29,8 +27,6 @@ const Save: React.FC = () => {
 
     return (
         <div>
-            <Button onClick={approval.onApprove}>approve</Button>
-            <Button onClick={supply}>TEST</Button>
             <StyledTitle>Save</StyledTitle>
             <hr />
             <Row>

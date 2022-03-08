@@ -11,7 +11,7 @@ export const USDT: SaveTokenMarket = {
   symbol: "USDT",
   marketSize: "117,749.08Y",
   APY: 0,
-  address: "",
+  address: "0xa0704bfa9E17cF4a1d74A60db7bcdA1B5D00D3E6",
   image: usdtLogo,
 };
 
@@ -21,7 +21,7 @@ export const USDC: SaveTokenMarket = {
   symbol: "USDC",
   marketSize: "9.69Z",
   APY: 0.02,
-  address: "",
+  address: "0x5B8B635c2665791cf62fe429cB149EaB42A3cEd8",
   image: usdcLogo,
 };
 
@@ -31,30 +31,10 @@ export const DAI: SaveTokenMarket = {
   symbol: "DAI",
   marketSize: "100.1E",
   APY: 0.0,
-  address: "",
+  address: "0x2Ec4c6fCdBF5F9beECeB1b51848fc2DB1f3a26af",
   image: daiLogo,
 };
 
-export const BAT: SaveTokenMarket = {
-  id: 4,
-  assetName: "Basic Attention Token",
-  symbol: "BAT",
-  marketSize: "294.24M",
-  APY: 56.71,
-  address: "",
-  image: batLogo,
-};
-
-export const YFI: SaveTokenMarket = {
-  id: 5,
-  assetName: "yearn.finance",
-  symbol: "YFI",
-  marketSize: "1.72K",
-  APY: 32.36,
-  address: "",
-  image: yearnLogo,
-};
-
-const SaveTokenList = [USDT, USDC, DAI, BAT, YFI];
+const SaveTokenList = [USDT, USDC, DAI];
 
 export default SaveTokenList;

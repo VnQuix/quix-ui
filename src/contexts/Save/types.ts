@@ -6,4 +6,5 @@ export interface SaveTokenMarket {
   APY: number;
   address: string;
   image: string;
+  balance: string;
 }

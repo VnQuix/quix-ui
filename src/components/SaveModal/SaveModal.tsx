@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import styled from 'styled-components'
 
@@ -25,7 +25,7 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
         ethereum,
     } = useWallet()
 
-    const { supply } = useSave()
+    const { supply, token } = useSave()
 
     const supplyAsset = (e: any) => {
         try {
@@ -93,6 +93,8 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                                 </Col>
                                 <Col xs={6} style={{ textAlign: 'right' }}>
                                     <Row><strong>Balance</strong></Row>
+                                    <Row>{token[data.id].balance}
+                                    </Row>
                                     <Row className='pt-3'>
                                         <Col xs={5}></Col>
                                         <Col xs={7}><Form>

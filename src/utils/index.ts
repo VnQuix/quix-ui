@@ -103,7 +103,7 @@ export const waitTransaction = async (provider: provider, txHash: string) => {
   return txReceipt.status;
 };
 
-const sleep = (ms: number) => {
+export const sleep = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 

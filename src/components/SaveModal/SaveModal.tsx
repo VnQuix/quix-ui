@@ -10,6 +10,7 @@ import { SaveTokenMarket } from 'contexts/Save/types'
 import useApproval from "hooks/useApproval"
 import { aavePoolContractAddress } from 'constants/contractAddresses'
 import useSave from "hooks/useSave"
+import { stringConversion } from 'components/TokensCard/TokensCard'
 
 interface ModalProps {
     isOpen: boolean
@@ -38,6 +39,8 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
 
     const approval = useApproval(data.address, aavePoolContractAddress)
     const approvalRequired = !approval.isApproved
+
+    const aBalance = stringConversion(token[data.id].balance)
 
     return (
         <Modal
@@ -92,8 +95,8 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                                     </Row>
                                 </Col>
                                 <Col xs={6} style={{ textAlign: 'right' }}>
-                                    <Row><strong>Balance</strong></Row>
-                                    <Row>{token[data.id].balance}
+                                    <Row><strong>Balance: {aBalance} {data.symbol}</strong></Row>
+                                    <Row>
                                     </Row>
                                     <Row className='pt-3'>
                                         <Col xs={5}></Col>
@@ -147,6 +150,7 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
         </Modal >
     )
 }
+
 
 
 const StyledDavatar = styled.div`

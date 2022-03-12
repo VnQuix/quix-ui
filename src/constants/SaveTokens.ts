@@ -3,7 +3,7 @@ import daiLogo from "assets/Token/dai-logo.svg";
 import aaveLogo from "assets/protocol/aave-logo.svg";
 
 export const AAVE: SaveTokenMarket = {
-  id: 1,
+  id: 0,
   assetName: "Aave",
   symbol: "AAVE",
   marketSize: "117,749.08Y",
@@ -14,7 +14,7 @@ export const AAVE: SaveTokenMarket = {
 };
 
 export const DAI: SaveTokenMarket = {
-  id: 3,
+  id: 1,
   assetName: "Dai",
   symbol: "DAI",
   marketSize: "100.1E",

@@ -4,13 +4,18 @@ import styled from 'styled-components'
 
 import { Card, Row, Col, Button } from 'react-bootstrap'
 import UniTokenPool from 'constants/UniTokens'
+import useUniswapInteractor from 'hooks/useUniswapInteractor'
 
 const PoolCard: React.FC = () => {
+    const { pool } = useUniswapInteractor()
     return (
         <Card>
             <Card.Header>
                 <h5 className='pt-2'><strong>Explore Opportunities</strong></h5>
             </Card.Header>
+            <Button onClick={() => {
+                console.log(pool)
+            }}></Button>
             <Card.Body>
                 <StyledRow>
                     <Row>

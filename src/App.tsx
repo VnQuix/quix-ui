@@ -18,6 +18,7 @@ import { BalancesContextProvider } from 'contexts/Balances';
 import { ChainDataContextProvider } from 'contexts/ChainData';
 import { TransactionWatcherContextProvider } from 'contexts/TransactionWatcher';
 import { SaveContextProvider } from 'contexts/Save';
+import { UniswapInteractorContextProvider } from 'contexts/UniswapInteractor';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import useWallet from 'hooks/useWallet';
 
@@ -74,9 +75,11 @@ const Providers: React.FC = ({ children }) => {
           <ChainDataContextProvider>
             <TokenDataContextProvider>
               <BalancesContextProvider>
-                <SaveContextProvider>
-                  {children}
-                </SaveContextProvider>
+                <UniswapInteractorContextProvider>
+                  <SaveContextProvider>
+                    {children}
+                  </SaveContextProvider>
+                </UniswapInteractorContextProvider>
               </BalancesContextProvider>
             </TokenDataContextProvider>
           </ChainDataContextProvider>

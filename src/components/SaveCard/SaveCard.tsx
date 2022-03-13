@@ -7,15 +7,18 @@ import useSave from 'hooks/useSave'
 import SaveModal from 'components/SaveModal'
 import { SaveTokenMarket } from 'contexts/Save/types'
 
+
 const SaveCard: React.FC = () => {
     const [infoData, setinfoData] = useState<SaveTokenMarket>(SaveTokenList[0])
     const { isShowingSaveModal, onCloseSaveModal, onOpenSaveModal } = useSave()
+
 
     return (
         <Card>
             <Card.Header>
                 <h5 className='pt-2'><strong>Explore Opportunities</strong></h5>
             </Card.Header>
+
             <Card.Body>
                 <StyledRow>
                     <Row>

@@ -58,7 +58,7 @@ export const DAI_USDC: UniLiquidityPool = {
   token1: UNI_USDC,
   address: "",
   tvl: "$368.79m",
-  APR: "0.01",
+  APR: "500",
 };
 
 export const DAI_USDT: UniLiquidityPool = {
@@ -67,7 +67,7 @@ export const DAI_USDT: UniLiquidityPool = {
   token1: UNI_USDT,
   address: "",
   tvl: "$14.23m",
-  APR: "0.05",
+  APR: "500",
 };
 
 export const USDT_USDC: UniLiquidityPool = {
@@ -76,7 +76,7 @@ export const USDT_USDC: UniLiquidityPool = {
   token1: UNI_USDC,
   address: "",
   tvl: "$225.25m",
-  APR: "0.01",
+  APR: "500",
 };
 
 const UniTokenPool = [DAI_USDC, DAI_USDT, USDT_USDC];

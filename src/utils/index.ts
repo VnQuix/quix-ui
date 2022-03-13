@@ -1,3 +1,4 @@
+import { RINKEBY_CHAIN_DATA } from "./connectors";
 import { provider, TransactionReceipt } from "web3-core";
 import Web3 from "web3";
 import BigNumber from "./bignumber";
@@ -109,4 +110,17 @@ export const sleep = (ms: number) => {
 
 export const fromWei = (number: BigNumber | undefined, power: number = 18) => {
   return getBigNumber(number).dividedBy(new BigNumber(10).pow(power));
+};
+
+export const makeEtherscanLink = (
+  transactionHash: string,
+  chainId: number | undefined
+) => {
+  if (chainId && chainId === RINKEBY_CHAIN_DATA.chainId)
+    return `https://https://rinkeby.etherscan.io/tx/${transactionHash}`;
+  return `https://etherscan.io/tx/${transactionHash}`;
+};
+
+export const makeEtherscanAddressLink = (transactionHash: string) => {
+  return `https://etherscan.io/address/${transactionHash}`;
 };

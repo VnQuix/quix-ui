@@ -1,14 +1,16 @@
 import React from 'react'
 
 import styled from 'styled-components'
-import MoonLoader from "react-spinners/MoonLoader"
 
+import MoonLoader from 'react-spinners/MoonLoader'
 
 interface ApprovingTransactionProps {
     onDismiss?: (...args: any[]) => any
 }
 
-const ApprovingTransaction: React.FC<ApprovingTransactionProps> = ({ onDismiss }) => {
+const ApprovingTransaction: React.FC<ApprovingTransactionProps> = ({
+    onDismiss,
+}) => {
     return (
         <StyledCard>
             <MoonLoader size={30} />

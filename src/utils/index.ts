@@ -117,7 +117,7 @@ export const makeEtherscanLink = (
   chainId: number | undefined
 ) => {
   if (chainId && chainId === RINKEBY_CHAIN_DATA.chainId)
-    return `https://https://rinkeby.etherscan.io/tx/${transactionHash}`;
+    return `https://rinkeby.etherscan.io/tx/${transactionHash}`;
   return `https://etherscan.io/tx/${transactionHash}`;
 };
 

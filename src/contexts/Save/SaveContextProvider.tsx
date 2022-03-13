@@ -12,6 +12,8 @@ import { provider } from 'web3-core'
 import { getBalance } from 'utils'
 import SaveTokenList from 'constants/SaveTokens';
 import { SaveTokenMarket } from './types';
+import useTransactionWatcher from 'hooks/useTransactionWatcher';
+import { TransactionStatusType } from 'contexts/TransactionWatcher';
 
 const SaveContextProvider: React.FC = ({ children }) => {
     const [token, setToken] = useState<SaveTokenMarket[]>([])
@@ -19,6 +21,8 @@ const SaveContextProvider: React.FC = ({ children }) => {
     const [debt, setDebt] = useState<string>("0")
     const [isShowingSaveModal, setIsShowingSaveModal] = useState<boolean>(false)
     const { ethereum, account, status } = useWallet()
+
+    const { onSetTransactionId, onSetTransactionStatus } = useTransactionWatcher()
 
     const Pool = getContract(
         ethereum,
@@ -56,13 +60,25 @@ const SaveContextProvider: React.FC = ({ children }) => {
 
     const supply = useCallback(
         async (amount: string, address: string) => {
-            await Pool.methods.supply(address, Web3.utils.toWei(amount, "ether"), account, 0)
+            onSetTransactionStatus(TransactionStatusType.IS_PENDING)
+
+            const transactionId = await Pool.methods.supply(address, Web3.utils.toWei(amount, "ether"), account, 0)
                 .send({
                     from: account,
                     gas: 800000,
                 })
+
+            if (!transactionId) {
+                onSetTransactionStatus(TransactionStatusType.IS_FAILED)
+                return
+            }
+
+            console.log(transactionId.blockHash)
+            onSetTransactionId(transactionId.blockHash)
+            onSetTransactionStatus(TransactionStatusType.IS_COMPLETED)
+
         },
-        [account, Pool.methods]
+        [account, Pool.methods, onSetTransactionId, onSetTransactionStatus]
     )
 
     const withdraw = useCallback(

@@ -23,7 +23,8 @@ const CompletedTransaction: React.FC = () => {
     <StyledCard>
       <StyledCardBody>Your transaction succeeded!</StyledCardBody>
       <a href={etherscanLink}>View the transaction{'  '}</a>
-      <Button onClick={onFinishTransaction}>Finish</Button>
+      <hr />
+      <Button onClick={onFinishTransaction} variant='success'>Finish the transaction</Button>
     </StyledCard>
   )
 }

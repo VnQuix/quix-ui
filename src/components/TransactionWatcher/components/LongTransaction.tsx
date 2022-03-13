@@ -23,7 +23,7 @@ const LongTransaction: React.FC = () => {
     <StyledCard>
       <StyledCardBody>Your transaction is still processing</StyledCardBody>
       <a href={etherscanLink}>View the transaction{'  '}</a>
-      <Button onClick={onFinishTransaction}>Finish</Button>
+      <Button onClick={onFinishTransaction} variant='success'>Finish</Button>
     </StyledCard>
   )
 }

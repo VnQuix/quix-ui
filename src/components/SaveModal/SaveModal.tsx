@@ -11,6 +11,8 @@ import useApproval from "hooks/useApproval"
 import { aavePoolContractAddress } from 'constants/contractAddresses'
 import useSave from "hooks/useSave"
 import { stringConversion } from 'components/TokensCard/TokensCard'
+import TransactionWatcher from 'components/TransactionWatcher'
+import useTransactionWatcher from 'hooks/useTransactionWatcher'
 
 interface ModalProps {
     isOpen: boolean
@@ -46,6 +48,8 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
         }
     }
 
+    const { transactionStatus } = useTransactionWatcher()
+
     const approval = useApproval(data.address, aavePoolContractAddress)
     const approvalRequired = !approval.isApproved
 
@@ -55,6 +59,7 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
     const aBalance = stringConversion(token[data.id].balance)
 
     return (
+
         <Modal
             show={isOpen}
             onExit={onDismiss}
@@ -144,23 +149,30 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                             </Container>
                         </Button>
                     </Row>
-                    <Row className='pt-4'>
-                        {
-                            (approvalRequired) ? (
-                                <Button variant='danger' onClick={approval.onApprove} className='py-2'>Approve</Button>
-                            ) : (
-                                <Button variant='success' onClick={supplyAsset} className='py-2'>Deposit</Button>
-                            )}
-                    </Row>
-                    <Row className='pt-2'>
-                        {
-                            (withdrawApprovalRequired) ? (
-                                <Button variant='danger' onClick={withdrawApproval.onApprove} className='py-2'>Approve</Button>
-                            ) : (
-                                <Button variant='success' onClick={withdrawAsset} className='py-2'>Withdraw</Button>
-                            )
+                    <TransactionWatcher
+                        transactionStatus={transactionStatus}
+                        startTransactionComponent={
+                            <>
+                                <Row className='pt-4'>
+                                    {
+                                        (approvalRequired) ? (
+                                            <Button variant='danger' onClick={approval.onApprove} className='py-2'>Approve</Button>
+                                        ) : (
+                                            <Button variant='success' onClick={supplyAsset} className='py-2'>Deposit</Button>
+                                        )}
+                                </Row>
+                                <Row className='pt-2'>
+                                    {
+                                        (withdrawApprovalRequired) ? (
+                                            <Button variant='danger' onClick={withdrawApproval.onApprove} className='py-2'>Approve</Button>
+                                        ) : (
+                                            <Button variant='success' onClick={withdrawAsset} className='py-2'>Withdraw</Button>
+                                        )
+                                    }
+                                </Row>
+                            </>
                         }
-                    </Row>
+                    />
                 </Container>
             </Modal.Body>
             <Modal.Footer>
@@ -169,6 +181,7 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                 </Button>
             </Modal.Footer>
         </Modal >
+
     )
 }
 

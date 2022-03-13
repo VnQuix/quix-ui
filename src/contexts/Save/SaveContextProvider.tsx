@@ -73,7 +73,6 @@ const SaveContextProvider: React.FC = ({ children }) => {
                 return
             }
 
-            console.log(transactionId.blockHash)
             onSetTransactionId(transactionId.blockHash)
             onSetTransactionStatus(TransactionStatusType.IS_COMPLETED)
 
@@ -83,14 +82,23 @@ const SaveContextProvider: React.FC = ({ children }) => {
 
     const withdraw = useCallback(
         async (amount: string, address: string) => {
-            await Pool.methods.withdraw(address, Web3.utils.toWei(amount, "ether"), account)
+            onSetTransactionStatus(TransactionStatusType.IS_PENDING)
+            const transactionId = await Pool.methods.withdraw(address, Web3.utils.toWei(amount, "ether"), account)
                 .send({
                     from: account,
                     gas: 800000,
 
                 })
+
+            if (!transactionId) {
+                onSetTransactionStatus(TransactionStatusType.IS_FAILED)
+                return
+            }
+
+            onSetTransactionId(transactionId.blockHash)
+            onSetTransactionStatus(TransactionStatusType.IS_COMPLETED)
         },
-        [account, Pool.methods]
+        [account, Pool.methods, onSetTransactionId, onSetTransactionStatus]
     )
 
     const onOpenSaveModal = useCallback(

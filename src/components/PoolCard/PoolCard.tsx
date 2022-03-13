@@ -2,8 +2,8 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-import { Card, Row, Col } from 'react-bootstrap'
-
+import { Card, Row, Col, Button } from 'react-bootstrap'
+import UniTokenPool from 'constants/UniTokens'
 
 const PoolCard: React.FC = () => {
     return (
@@ -21,13 +21,49 @@ const PoolCard: React.FC = () => {
                             Available Pools
                         </Col>
                         <Col xs={3}>
-                            Liquidity
+                            TVL
                         </Col>
                         <Col xs={2}>
                             Fee APR
                         </Col>
                     </Row>
                 </StyledRow>
+                {UniTokenPool.map((data) => (
+                    <StyledRow className='pt-3' key={data.id}>
+                        <Row>
+                            <Col xs={1}>
+                                {data.id}
+                            </Col>
+                            <Col xs={3}>
+                                &nbsp;&nbsp;
+                                <img
+                                    alt=""
+                                    src={data.token0.image}
+                                    width="25"
+                                    height="25"
+                                    className="pt-0"
+                                    style={{ marginBottom: '0.5rem' }}
+                                />
+                                &nbsp;&nbsp;
+                                /
+                                &nbsp;&nbsp;
+                                <img
+                                    alt=""
+                                    src={data.token1.image}
+                                    width="25"
+                                    height="25"
+                                    className="pt-0"
+                                    style={{ marginBottom: '0.5rem' }}
+                                />
+                            </Col>
+                            <Col xs={3}>{data.tvl}</Col>
+                            <Col xs={2}>{data.APR}</Col>
+                            <Col xs={3}>
+                                <Button variant='success' style={{ marginBottom: '0.5rem' }}>Provide</Button>
+                            </Col>
+                        </Row>
+                    </StyledRow>
+                ))}
             </Card.Body>
         </Card>
     )

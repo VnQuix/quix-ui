@@ -6,7 +6,6 @@ import useTransactionWatcher from 'hooks/useTransactionWatcher'
 import useWallet from 'hooks/useWallet'
 import { makeEtherscanLink } from 'utils'
 import MoonLoader from 'react-spinners/MoonLoader'
-import { Modal } from 'react-bootstrap'
 
 const PendingTransaction: React.FC = () => {
   const { transactionId } = useTransactionWatcher()

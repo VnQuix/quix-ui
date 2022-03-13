@@ -7,4 +7,5 @@ export interface SaveTokenMarket {
   address: string;
   image: string;
   balance: string;
+  aTokenAddress: string;
 }

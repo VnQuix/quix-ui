@@ -11,6 +11,7 @@ export const AAVE: SaveTokenMarket = {
   address: "0x953af320e2bD3041c4e56BB3a30E7f613a1f3C1A",
   image: aaveLogo,
   balance: "0",
+  aTokenAddress: "",
 };
 
 export const DAI: SaveTokenMarket = {
@@ -22,6 +23,7 @@ export const DAI: SaveTokenMarket = {
   address: "0x2Ec4c6fCdBF5F9beECeB1b51848fc2DB1f3a26af",
   image: daiLogo,
   balance: "0",
+  aTokenAddress: "",
 };
 
 const SaveTokenList = [AAVE, DAI];

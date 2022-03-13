@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import { provider } from "web3-core";
 import { SaveTokenMarket } from "./types";
 import SaveTokenList from "constants/SaveTokens";
 interface SaveContextProps {

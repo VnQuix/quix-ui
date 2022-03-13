@@ -70,20 +70,11 @@ const SaveContextProvider: React.FC = ({ children }) => {
             await Pool.methods.withdraw(address, Web3.utils.toWei(amount, "ether"), account)
                 .send({
                     from: account,
-                    gas: 80000,
+                    gas: 800000,
 
                 })
         },
         [account, Pool.methods]
-    )
-
-    const getATokenBalance = useCallback(
-        async (userAddress: string, address: string, provider: provider) => {
-            const data = await Pool.methods.getReserveData(address).call()
-            const aTokenAddress = data[8]
-            if (userAddress) return await getBalance(provider, aTokenAddress, userAddress)
-        },
-        [Pool.methods]
     )
 
     const onOpenSaveModal = useCallback(
@@ -106,7 +97,7 @@ const SaveContextProvider: React.FC = ({ children }) => {
             const aTokenAddress = data[8]
             const aTokenBalance = await getBalance(provider, aTokenAddress, userAddress)
 
-            return convertToSaveTokenData(e, JSON.stringify(aTokenBalance))
+            return convertToSaveTokenData(e, JSON.stringify(aTokenBalance), JSON.stringify(aTokenAddress))
         })
         Promise.all(SaveTokenBalance)
             .then(setToken)
@@ -146,6 +137,7 @@ const SaveContextProvider: React.FC = ({ children }) => {
 function convertToSaveTokenData(
     token: SaveTokenMarket,
     tokenBalance: string,
+    aToken: string
 ) {
     if (!tokenBalance) {
         return token
@@ -158,7 +150,8 @@ function convertToSaveTokenData(
             APY: token.APY,
             address: token.address,
             image: token.image,
-            balance: tokenBalance
+            balance: tokenBalance,
+            aTokenAddress: aToken
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import styled from 'styled-components'
 
@@ -26,7 +26,7 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
         ethereum,
     } = useWallet()
 
-    const { supply, token } = useSave()
+    const { supply, token, withdraw } = useSave()
 
     const supplyAsset = (e: any) => {
         try {
@@ -37,8 +37,20 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
         }
     }
 
+    const withdrawAsset = (e: any) => {
+        try {
+            e.preventDefault()
+            withdraw(amount, data.address)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const approval = useApproval(data.address, aavePoolContractAddress)
     const approvalRequired = !approval.isApproved
+
+    const withdrawApproval = useApproval(token[data.id].aTokenAddress.slice(1, -1), aavePoolContractAddress)
+    const withdrawApprovalRequired = !withdrawApproval.isApproved
 
     const aBalance = stringConversion(token[data.id].balance)
 
@@ -139,6 +151,15 @@ const SaveModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                             ) : (
                                 <Button variant='success' onClick={supplyAsset} className='py-2'>Deposit</Button>
                             )}
+                    </Row>
+                    <Row className='pt-2'>
+                        {
+                            (withdrawApprovalRequired) ? (
+                                <Button variant='danger' onClick={withdrawApproval.onApprove} className='py-2'>Approve</Button>
+                            ) : (
+                                <Button variant='success' onClick={withdrawAsset} className='py-2'>Withdraw</Button>
+                            )
+                        }
                     </Row>
                 </Container>
             </Modal.Body>

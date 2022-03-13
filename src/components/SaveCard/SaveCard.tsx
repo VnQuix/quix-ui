@@ -40,7 +40,7 @@ const SaveCard: React.FC = () => {
                             onOpenSaveModal()
                             setinfoData(data)
                         }
-                    return (<StyledRow className='pt-3'>
+                    return (<StyledRow className='pt-3' key={data.id}>
                         <Row>
                             <Col xs={1}>
                                 {data.id}

@@ -9,7 +9,7 @@ import SaveCard from "components/SaveCard";
 import useSave from 'hooks/useSave'
 import aaveLogo from "assets/protocol/aave-logo.svg"
 import useWallet from "hooks/useWallet";
-import ethLogo from "assets/Token/eth-logo.png"
+import { currencyFormat } from 'components/InfoBar/InfoBar'
 
 
 const Save: React.FC = () => {
@@ -19,8 +19,8 @@ const Save: React.FC = () => {
 
 
     useEffect(() => {
-        if (account && ethereum) {
-            setBalanceUpdated(balance)
+        if (balance) {
+            setBalanceUpdated(numbConversion(balance))
         }
     }, [setBalanceUpdated, account, ethereum, balance])
 
@@ -51,16 +51,7 @@ const Save: React.FC = () => {
                         <h4><strong>Aave Balance:</strong></h4>
                     </StyledBalanceCol>
                     <StyledBalanceNumber>
-                        {numbConversion(balanceUpdated)}&nbsp;&nbsp;
-                        <img
-                            alt=""
-                            src={ethLogo}
-                            width="23"
-                            height="23"
-                            style={{
-                                marginBottom: '0.3rem'
-                            }}
-                        />{" "}
+                        {balanceUpdated}
                     </StyledBalanceNumber>
                 </Col>
 
@@ -85,20 +76,14 @@ const StyledBalanceCol = styled.div`
 const StyledBalanceNumber = styled.h4`
     font-weight: bold;
     text-align: right;
-    margin-right: 3.6rem
+    margin-right: 4.3rem
 `
 
 function numbConversion(num: string) {
-    try {
-        const numLength = Number(num.length)
-        const slice = numLength - 15
+    const numLength = Number(num.length)
+    const slice = numLength - 18
 
-        return Number(num.slice(0, slice)) / 1000
-
-    } catch (error) {
-        console.log(error)
-    }
-
+    return currencyFormat(Number(num.slice(0, slice)) / 1000)
 }
 
 export default Save;

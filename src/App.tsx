@@ -26,7 +26,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import './bootstrap.min.css';
 
 
-
 const App: React.FC = () => {
   const { account } = useWallet()
 

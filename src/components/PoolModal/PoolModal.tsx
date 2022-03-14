@@ -10,6 +10,7 @@ import useWallet from 'hooks/useWallet'
 import useApproval from "hooks/useApproval"
 import useUniswapInteractor from 'hooks/useUniswapInteractor'
 
+
 interface ModalProps {
     isOpen: boolean
     onDismiss: () => void
@@ -120,7 +121,7 @@ const PoolModal: React.FC<ModalProps> = ({ isOpen, onDismiss, data }) => {
                             </Row>
                         </Col>
                     </Row>
-                    <Row className='pt-2' style={{ textAlign: 'left' }}>
+                    <Row className='pt-4' style={{ textAlign: 'left' }}>
                         <Col xs={6}>
                             {
                                 (token0ApprovalRequired) ? (

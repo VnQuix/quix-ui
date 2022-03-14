@@ -52,6 +52,19 @@ export const UNI_USDT: TokenData = {
   balance: "",
 };
 
+export const UNI_TOKEN_HOLDER: TokenData = {
+  address: "",
+  chainId: "4",
+  id: "100",
+  image: "",
+  name: "Token",
+  coinGeckoID: "",
+  symbol: "Token",
+  priceUsd: "",
+  dailyPercentChange: "",
+  balance: "",
+};
+
 export const DAI_USDC: UniLiquidityPool = {
   id: 0,
   token0: UNI_DAI,
@@ -79,6 +92,7 @@ export const USDT_USDC: UniLiquidityPool = {
   APR: "500",
 };
 
+export const UNI_TOKEN_RINKEBY = [UNI_DAI, UNI_USDC, UNI_USDT];
 const UniTokenPool = [DAI_USDC, DAI_USDT, USDT_USDC];
 
 export default UniTokenPool;

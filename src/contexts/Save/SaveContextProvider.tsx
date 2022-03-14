@@ -151,7 +151,7 @@ const SaveContextProvider: React.FC = ({ children }) => {
             isShowingSaveModal,
             onOpenSaveModal,
             onCloseSaveModal,
-            token: token
+            token
         }}>
             {children}
         </SaveContext.Provider>

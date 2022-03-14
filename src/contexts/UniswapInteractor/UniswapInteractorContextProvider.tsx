@@ -13,6 +13,7 @@ import UniTokenPool, { UniLiquidityPool } from 'constants/UniTokens';
 const UniswapInteractorContextProvider: React.FC = ({ children }) => {
     const [pool, setPool] = useState<UniLiquidityPool[]>([])
     const { ethereum, account, status } = useWallet()
+    const [isShowingPoolModal, setIsShowingPoolModal] = useState<boolean>(false)
 
     const uniFactory = getContract(
         ethereum,
@@ -43,10 +44,27 @@ const UniswapInteractorContextProvider: React.FC = ({ children }) => {
         }
     }, [account, ethereum, fetchData])
 
+    const onOpenPoolModal = useCallback(
+        () => {
+            setIsShowingPoolModal(true)
+        },
+        [setIsShowingPoolModal]
+    )
+
+    const onClosePoolModal = useCallback(
+        () => {
+            setIsShowingPoolModal(false)
+        },
+        [setIsShowingPoolModal]
+    )
+
     return (
         <UniswapInteractorContext.Provider
             value={{
-                pool
+                pool,
+                isShowingPoolModal,
+                onOpenPoolModal,
+                onClosePoolModal
             }}
         >{children}</UniswapInteractorContext.Provider>
     )

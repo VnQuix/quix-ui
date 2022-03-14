@@ -5,7 +5,7 @@ import usdtLogo from "assets/Token/usdt-logo.png";
 import usdcLogo from "assets/Token/usdc-logo.svg";
 
 export interface UniLiquidityPool {
-  id: string;
+  id: number;
   token0: TokenData;
   token1: TokenData;
   address: string;
@@ -53,7 +53,7 @@ export const UNI_USDT: TokenData = {
 };
 
 export const DAI_USDC: UniLiquidityPool = {
-  id: "0",
+  id: 0,
   token0: UNI_DAI,
   token1: UNI_USDC,
   address: "",
@@ -62,7 +62,7 @@ export const DAI_USDC: UniLiquidityPool = {
 };
 
 export const DAI_USDT: UniLiquidityPool = {
-  id: "1",
+  id: 1,
   token0: UNI_DAI,
   token1: UNI_USDT,
   address: "",
@@ -71,7 +71,7 @@ export const DAI_USDT: UniLiquidityPool = {
 };
 
 export const USDT_USDC: UniLiquidityPool = {
-  id: "2",
+  id: 2,
   token0: UNI_USDT,
   token1: UNI_USDC,
   address: "",

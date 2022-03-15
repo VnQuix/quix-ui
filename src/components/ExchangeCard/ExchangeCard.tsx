@@ -18,7 +18,6 @@ const ExchangeCard: React.FC = () => {
             <Row>
                 <Col xs={{ span: 8, offset: 2 }}>
                     <div className="Uniswap" >
-
                         <SwapWidget
                             provider={ethereum}
                             jsonRpcEndpoint={jsonRpcEndpoint}

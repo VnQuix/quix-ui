@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 
+import styled from 'styled-components'
+
 import { Card, Row, Col, Button } from 'react-bootstrap'
-import { StyledRow } from 'components/PoolCard/PoolCard'
 import SaveTokenList from 'constants/SaveTokens'
 import useSave from 'hooks/useSave'
 import SaveModal from 'components/SaveModal'
@@ -86,5 +87,9 @@ const SaveCard: React.FC = () => {
         </Card>
     )
 }
+
+export const StyledRow = styled.div`
+    font-weight: bold;
+`
 
 export default SaveCard

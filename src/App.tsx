@@ -5,7 +5,6 @@ import styled from 'styled-components'
 
 import Dashboard from 'views/Dashboard';
 import Exchange from 'views/Exchange';
-import Pool from 'views/Pool';
 import Save from 'views/Save';
 
 import SideBar from 'components/SideBar'
@@ -18,7 +17,6 @@ import { BalancesContextProvider } from 'contexts/Balances';
 import { ChainDataContextProvider } from 'contexts/ChainData';
 import { TransactionWatcherContextProvider } from 'contexts/TransactionWatcher';
 import { SaveContextProvider } from 'contexts/Save';
-import { UniswapInteractorContextProvider } from 'contexts/UniswapInteractor';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import useWallet from 'hooks/useWallet';
 
@@ -49,7 +47,6 @@ const App: React.FC = () => {
                 <Switch>
                   <Route path='/' component={Dashboard} exact />
                   <Route path='/exchange' component={Exchange} />
-                  <Route path='/pool' component={Pool} />
                   <Route path='/save' component={Save} />
                 </Switch>
               </StyledPageContentWrapper>
@@ -74,11 +71,10 @@ const Providers: React.FC = ({ children }) => {
           <ChainDataContextProvider>
             <TokenDataContextProvider>
               <BalancesContextProvider>
-                <UniswapInteractorContextProvider>
-                  <SaveContextProvider>
-                    {children}
-                  </SaveContextProvider>
-                </UniswapInteractorContextProvider>
+
+                <SaveContextProvider>
+                  {children}
+                </SaveContextProvider>
               </BalancesContextProvider>
             </TokenDataContextProvider>
           </ChainDataContextProvider>

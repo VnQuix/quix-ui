@@ -45,15 +45,6 @@ const SideBar: React.FC = () => {
                             <StyledHeading>Exchange</StyledHeading>
                         </StyledText>
                     </Link>
-                    <Link to={"/pool"} style={{ textDecoration: "none", color: "whitesmoke" }}>
-                        <StyledText className="pt-3">
-                            <RiMoneyDollarCircleFill
-                                fontSize="23px"
-                                style={{ marginRight: "1rem" }}
-                            />
-                            <StyledHeading>Pool</StyledHeading>
-                        </StyledText>
-                    </Link>
                     <Link to={"/save"} style={{ textDecoration: "none", color: "whitesmoke" }}>
                         <StyledText className="pt-3">
                             <FaPiggyBank fontSize="23px" style={{ marginRight: "1rem" }} />

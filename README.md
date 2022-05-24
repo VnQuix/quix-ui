@@ -1,6 +1,6 @@
 # Crypto Wallet All-In-One Application
 
-You can now find the project [here](https://wallet-9a0sx0fdj-duykhangpham201.vercel.app/#/). The project currently supports Ethereum Mainnet, Polygon Mainnet, and Rinkedby Testnet.
+You can now find the project at [its current Vercel website](https://wallet-9a0sx0fdj-duykhangpham201.vercel.app/#/). The project currently supports Ethereum Mainnet, Polygon Mainnet, and Rinkedby Testnet.
 
 ## Features Preview:
 - Crypto Watchlist.

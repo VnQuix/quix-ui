@@ -1,5 +1,13 @@
 # Crypto Wallet All-In-One Application
 
+You can now find the project [here](https://wallet-9a0sx0fdj-duykhangpham201.vercel.app/#/). The project currently supports Ethereum Mainnet, Polygon Mainnet, and Rinkedby Testnet.
+
+## Features Preview:
+- Crypto Watchlist.
+- Personal Crypto Net Worth and Token List.
+- Direct Swapping features from Uniswap.
+- Direct Deposit and Withdrawal from Aave.
+
 ## Setting up Local Development
 
 Required:
@@ -16,5 +24,3 @@ $ yarn start
 
 The site is now running at `http://localhost:3000`!
 Open the source code and start editing!
-
-## UI Preview
